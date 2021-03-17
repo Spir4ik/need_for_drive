@@ -4,6 +4,12 @@
   width: 65px;
   height: 100vh;
   background-color: $bc-header;
+  @media (max-width: 1023px) {
+    width: 85px;
+  }
+  @media (max-width: 767px) {
+    width: 0;
+  }
   #menu__toggle {
     opacity: 0;
     &:checked {
@@ -36,6 +42,12 @@
     height: 26px;
     cursor: pointer;
     z-index: 3;
+    @media (max-width: 1023px) {
+      width: 31px;
+    }
+    @media (max-width: 767px) {
+      width: 26px;
+    }
     >span {
       display: block;
       position: absolute;
@@ -43,6 +55,9 @@
       height: 2px;
       background-color: white;
       transition-duration: .25s;
+      @media (max-width: 767px) {
+        background-color: $bc-header;
+      }
       &::before {
         display: block;
         position: absolute;
@@ -52,6 +67,9 @@
         transition-duration: .25s;
         content: '';
         top: -8px;
+        @media (max-width: 767px) {
+          background-color: $bc-header;
+        }
       }
       &::after {
         display: block;
@@ -62,6 +80,9 @@
         transition-duration: .25s;
         content: '';
         top: 8px;
+        @media (max-width: 767px) {
+          background-color: $bc-header;
+        }
       }
     }
   }
