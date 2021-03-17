@@ -1,17 +1,14 @@
 import React from 'react'
 import iconCity from './assets/icon-city.svg'
 import Slider from "./components/Slider.jsx";
+import HamburgerMenu from "./components/HamburgerMenu.jsx";
 import "./styles/index.scss"
 
 export default function () {
     return(
         <div className="wrapper">
             <div className="container">
-                <div className="header">
-                    <label className='menu__btn'>
-                        <span></span>
-                    </label>
-                </div>
+                <HamburgerMenu />
                 <div className="content">
                     <div className="content__header">
                         <div className="header__logo">

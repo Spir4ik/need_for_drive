@@ -4,14 +4,9 @@ import '../styles/styleSlider.scss'
 
 export default function () {
     const [currentIdx, setCurrentIdx] = useState(0);
-    const [images, _] = useState(sliderItems.map(({title, img, info}) => {
-        const key = new Date();
-        return { title, img, info, key }
-    }));
-
 
     const renderItems =() => {
-        return sliderItems.map(({title, img, info, id}) => {
+        return sliderItems.map(({title, img, info, id, background}) => {
             return(
                 <div className='slider__item' style={{transform: `translateX(${currentIdx}%)`}} key={id}>
                     <div className="slider__item-container">
@@ -26,7 +21,7 @@ export default function () {
                                     {info}
                                 </div>
                                 <div className="preImg__btn">
-                                    <button>Подробнее</button>
+                                    <button style={{background: background}}>Подробнее</button>
                                 </div>
                             </div>
                         </div>
@@ -37,8 +32,7 @@ export default function () {
     };
 
     const setNext = () => {
-        currentIdx === 200 ? setCurrentIdx(0) : setCurrentIdx(currentIdx + 100)
-        console.log('worked???')
+        currentIdx === 0 ? setCurrentIdx(-300) : setCurrentIdx(currentIdx + 100)
     };
 
     const setPrev = () => {
@@ -66,6 +60,14 @@ export default function () {
                         <div className="next-top"></div>
                         <div className="next-bottom"></div>
                     </div>
+                </div>
+                <div className="slider__indicators">
+                    <ul>
+                        <li className={currentIdx === 0 ? 'active' : ''} onClick={() => setCurrentIdx(0)}> </li>
+                        <li className={currentIdx === -100 ? 'active' : ''} onClick={() => setCurrentIdx(-100)}> </li>
+                        <li className={currentIdx === -200 ? 'active' : ''} onClick={() => setCurrentIdx(-200)}> </li>
+                        <li className={currentIdx === -300 ? 'active' : ''} onClick={() => setCurrentIdx(-300)}> </li>
+                    </ul>
                 </div>
             </div>
         </>
