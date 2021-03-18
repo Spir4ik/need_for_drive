@@ -26,7 +26,6 @@ export default function () {
                         </div>
                         <div className="hero-block__footer">
                             <p>Поминутная аренда авто твоего города</p>
-                            {/*<button>Забронировать</button>*/}
                         </div>
                         <div className="hero__block__btn">
                             <button>Забронировать</button>

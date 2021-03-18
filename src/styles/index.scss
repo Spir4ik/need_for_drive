@@ -1,8 +1,13 @@
 @import "~normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 $bc-header: #151B1F;
 $main-color: #0EC261;
 $gray: #999999;
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
 
 .container {
   display: flex;
@@ -80,39 +85,19 @@ $gray: #999999;
         font-style: normal;
         font-weight: 300;
         font-size: 26px;
-        line-height: 0;
+        line-height: 1;
         color: $gray;
         @media (max-width: 767px) {
           font-size: 18px;
           line-height: 1;
         }
-        //button {
-        //  margin: 60px 0 0 0;
-        //  height: 48px;
-        //  width: 250px;
-        //  background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
-        //  background-blend-mode: darken;
-        //  border-radius: 8px;
-        //  color: white;
-        //  font-style: normal;
-        //  font-weight: 500;
-        //  font-size: 18px;
-        //  line-height: 21px;
-        //  text-align: center;
-        //  border: none;
-        //  @media (max-width: 767px) {
-        //    margin: 40px 0 0 -20px;
-        //    width: 100%;
-        //    border-radius: 0;
-        //  }
-        //}
       }
       .hero__block__btn {
         @media (max-width: 767px) {
           width: 100%;
         }
         button {
-          margin: 60px 0 0 0;
+          margin: 40px 0 0 0;
           height: 48px;
           width: 250px;
           background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
