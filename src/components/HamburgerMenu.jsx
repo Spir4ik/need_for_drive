@@ -6,6 +6,7 @@ import '../styles/styleHamburger-menu.scss'
 
 export default function () {
     const [showMenuBack, setShowMenuBack] = useState(false);
+    const [showRusLanguage, setShowRusLanguage] = useState(false)
 
     return(
         <div className="header">
@@ -15,6 +16,9 @@ export default function () {
             <label className='menu__btn' htmlFor="menu__toggle">
                 <span></span>
             </label>
+            <div className="menu__language" onClick={() => setShowRusLanguage(!showRusLanguage)}>
+                {showRusLanguage ? <p>Рус</p> : <p>Eng</p>}
+            </div>
             {showMenuBack && <div className="menu__back">
                 <div className="menu__list">
                     <ul>
