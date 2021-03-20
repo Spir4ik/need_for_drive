@@ -16,6 +16,7 @@ export default function () {
             <label className='menu__btn' htmlFor="menu__toggle">
                 <span></span>
             </label>
+            <div className="cover-element"></div>
             <div className="menu__language" onClick={() => setShowRusLanguage(!showRusLanguage)}>
                 {showRusLanguage ? <p>Рус</p> : <p>Eng</p>}
             </div>

@@ -1,16 +1,27 @@
-@import "index";
+//@import "index";
 
 .header {
   width: 65px;
   height: 100vh;
-  background-color: $bc-header;
+  background-color: #151B1F;
+  .cover-element {
+    position: absolute;
+    top: 30px;
+    width: 62px;
+    height: 100px;
+    background-color: #151B1F;
+    z-index: 2;
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
   .menu__language {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 48px;
     height: 48px;
-    color: $main-color;
+    color: #0EC261;
     border-radius: 50%;
     position: fixed;
     top: 90%;
@@ -21,7 +32,7 @@
       color: white;
     }
     &:active {
-      color: $main-color;
+      color: #0EC261;
     }
   }
   @media (max-width: 1023px) {
@@ -78,7 +89,7 @@
       background-color: white;
       transition-duration: .25s;
       @media (max-width: 767px) {
-        background-color: $bc-header;
+        background-color: #151B1F;
       }
       &::before {
         display: block;
@@ -90,7 +101,7 @@
         content: '';
         top: -8px;
         @media (max-width: 767px) {
-          background-color: $bc-header;
+          background-color: #151B1F;
         }
       }
       &::after {
@@ -103,7 +114,7 @@
         content: '';
         top: 8px;
         @media (max-width: 767px) {
-          background-color: $bc-header;
+          background-color: #151B1F;
         }
       }
     }
@@ -113,7 +124,7 @@
     width: 100%;
     top: 0;
     height: 100vh;
-    background-color: $bc-header;
+    background-color: #151B1F;
     ul {
       color: white;
       width: 200px;
@@ -167,7 +178,7 @@
       top: 0;
       opacity: 0.81;
       right: 0;
-      background-color: $bc-header;
+      background-color: #151B1F;
       z-index: 5;
       @media (max-width: 1023px) {
         display: none;
