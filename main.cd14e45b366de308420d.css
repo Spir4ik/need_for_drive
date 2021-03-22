@@ -303,6 +303,67 @@
         .header .menu__back .menu__back__front-slider {
           display: none; } }
 
+.autocomplete {
+  width: 315px;
+  margin-top: 32px; }
+  .autocomplete.main-page {
+    width: 200px;
+    margin-top: 0;
+    margin-right: 55px; }
+  @media (max-width: 767px) {
+    .autocomplete {
+      width: 320px; } }
+  .autocomplete ul {
+    position: absolute;
+    margin: 0;
+    padding: 0 0 0 8px;
+    width: 200px;
+    height: 160px;
+    overflow-y: auto;
+    list-style: none;
+    color: #999999;
+    border: 1px solid #EEEEEE;
+    border-top: none; }
+    .autocomplete ul li {
+      color: #999999; }
+      .autocomplete ul li:hover {
+        cursor: pointer;
+        color: #0EC261; }
+    .autocomplete ul::-webkit-scrollbar {
+      width: 5px;
+      background-color: white; }
+    .autocomplete ul::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #BFBFBF; }
+    .autocomplete ul::-webkit-scrollbar-track {
+      border-radius: 5px;
+      background-color: #f9f9fd; }
+  .autocomplete .forms__city, .autocomplete .forms__point {
+    display: flex;
+    align-content: center;
+    margin-bottom: 15px; }
+    .autocomplete .forms__city.main-page, .autocomplete .forms__point.main-page {
+      margin-bottom: 0; }
+    .autocomplete .forms__city input, .autocomplete .forms__point input {
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 16px;
+      margin-left: 10px;
+      width: 100%;
+      border-width: 0;
+      border-bottom: 1px solid black;
+      text-indent: 8px;
+      outline: none; }
+    .autocomplete .forms__city label, .autocomplete .forms__point label {
+      width: 150px;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 16px; }
+      .autocomplete .forms__city label:first-child, .autocomplete .forms__point label:first-child {
+        text-align: end; }
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -674,6 +735,8 @@ body {
           @media (max-width: 767px) {
             .container .content .content__header .header__city p {
               margin: 0 16px 0 7px; } }
+          .container .content .content__header .header__city p:hover {
+            cursor: pointer; }
       @media (max-width: 767px) {
         .container .content .content__header {
           flex-direction: column;
@@ -785,6 +848,9 @@ body {
   font-weight: bold;
   font-size: 14px;
   line-height: 16px; }
+  @media (max-width: 767px) {
+    .breadcrumb {
+      font-size: 8px; } }
   .breadcrumb ul {
     padding: 0;
     margin-block-end: 0; }
@@ -811,63 +877,18 @@ body {
       padding: 8px 0 8px 0; }
       .breadcrumb ul li img {
         padding: 0 16px 0 16px; }
-
-.autocomplete {
-  width: 315px;
-  margin-top: 32px; }
-  .autocomplete ul {
-    margin: 0;
-    padding: 0 0 0 8px;
-    width: 97.5%;
-    height: 160px;
-    overflow-y: auto;
-    list-style: none;
-    color: #999999;
-    border: 1px solid #EEEEEE;
-    border-top: none; }
-    .autocomplete ul li {
-      color: #999999; }
-      .autocomplete ul li:hover {
-        cursor: pointer;
-        color: #0EC261; }
-    .autocomplete ul::-webkit-scrollbar {
-      width: 5px;
-      background-color: white; }
-    .autocomplete ul::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background-color: #BFBFBF; }
-    .autocomplete ul::-webkit-scrollbar-track {
-      border-radius: 5px;
-      background-color: #f9f9fd; }
-  .autocomplete .forms__city, .autocomplete .forms__point {
-    display: flex;
-    align-content: center;
-    margin-bottom: 15px; }
-    .autocomplete .forms__city input, .autocomplete .forms__point input {
-      font-style: normal;
-      font-weight: 300;
-      font-size: 14px;
-      line-height: 16px;
-      margin-left: 10px;
-      width: 100%;
-      border-width: 0;
-      border-bottom: 1px solid black;
-      text-indent: 8px;
-      outline: none; }
-    .autocomplete .forms__city label, .autocomplete .forms__point label {
-      width: 150px;
-      font-style: normal;
-      font-weight: 300;
-      font-size: 14px;
-      line-height: 16px; }
-      .autocomplete .forms__city label:first-child, .autocomplete .forms__point label:first-child {
-        text-align: end; }
+        @media (max-width: 767px) {
+          .breadcrumb ul li img {
+            padding: 0 22px 0 21px; } }
 
 .content__info-about-order {
   border-left: 1px solid #EEEEEE;
   height: 80.6vh;
   width: 100%;
   padding: 0 63px 0 32px; }
+  @media (max-width: 1200px) {
+    .content__info-about-order {
+      display: none; } }
   .content__info-about-order .containers {
     display: flex;
     flex-direction: column;
