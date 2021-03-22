@@ -9,6 +9,9 @@
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
+  @media (max-width: 767px) {
+    font-size: 8px;
+  }
  ul {
    padding: 0;
    margin-block-end: 0;
@@ -37,6 +40,9 @@
      padding: 8px 0 8px 0;
      img {
        padding: 0 16px 0 16px;
+       @media (max-width: 767px) {
+         padding: 0 22px 0 21px;
+       }
      }
    }
  }

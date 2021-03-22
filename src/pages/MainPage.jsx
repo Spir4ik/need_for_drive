@@ -1,11 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import iconCity from '../assets/icon-city.svg'
 import Slider from "../components/Slider.jsx";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
+import Autocomplete from "../components/Autocomplete.jsx";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 import "../styles/index.scss"
 
 export default function () {
+    const [showAutocomplete, setShowAutocomplete] = useState(true);
+    const cityName = useSelector(state => state.order);
+
     return(
         <div className="wrapper">
             <div className="container">
@@ -17,7 +22,11 @@ export default function () {
                         </div>
                         <div className="header__city">
                             <img src={iconCity} alt=""/>
-                            <p>Ульяновск</p>
+                           {showAutocomplete ?
+                               <Autocomplete showAutoFunc={setShowAutocomplete}/>
+                               :
+                               <p onClick={() => setShowAutocomplete(true)}>{cityName.cityId.name}</p>
+                           }
                         </div>
                     </div>
                     <div className="content__hero-block">
