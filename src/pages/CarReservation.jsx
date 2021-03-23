@@ -6,6 +6,7 @@ import Navigation from "../components/Navigation.jsx";
 import InfoAboutOrder from "../components/InfoAboutOrder.jsx";
 import Autocomplete from "../components/Autocomplete.jsx";
 import Map from "../components/Map.jsx";
+import ContentHeader from "../components/ContentHeader.jsx";
 
 export default function () {
 
@@ -15,15 +16,7 @@ export default function () {
             <div className="container other-page">
                 <div className="content other-page">
 
-                    <div className="content__header">
-                        <div className="header__logo">
-                            Need for drive
-                        </div>
-                        <div className="header__city">
-                            <img src={iconCity} alt=""/>
-                            <p>Ульяновск</p>
-                        </div>
-                    </div>
+                    <ContentHeader />
 
                     <Navigation />
                     <div className="content__main">
