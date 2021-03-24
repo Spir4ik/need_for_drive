@@ -310,6 +310,9 @@
     width: 200px;
     margin-top: 0;
     margin-right: 55px; }
+    .autocomplete.main-page ul {
+      margin: 20px 0 0 10px;
+      width: 173px; }
   @media (max-width: 767px) {
     .autocomplete {
       width: 320px; } }
@@ -357,11 +360,13 @@
       text-indent: 8px;
       outline: none; }
     .autocomplete .forms__city label, .autocomplete .forms__point label {
-      width: 150px;
+      width: 155px;
       font-style: normal;
       font-weight: 300;
       font-size: 14px;
       line-height: 16px; }
+      .autocomplete .forms__city label.main-page, .autocomplete .forms__point label.main-page {
+        width: 0; }
       .autocomplete .forms__city label:first-child, .autocomplete .forms__point label:first-child {
         text-align: end; }
 
@@ -919,7 +924,7 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: end; }
-        .content__info-about-order .containers .info-about-order__header__body .body__point .city {
+        .content__info-about-order .containers .info-about-order__header__body .body__point .city, .content__info-about-order .containers .info-about-order__header__body .body__point .address {
           text-align: right; }
     .content__info-about-order .containers .info-about-order__header__footer {
       flex-direction: column;
@@ -942,4 +947,6 @@ body {
         text-align: center;
         color: white;
         border: none; }
+        .content__info-about-order .containers .info-about-order__header__footer button:hover {
+          cursor: pointer; }
 
