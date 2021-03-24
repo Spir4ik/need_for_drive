@@ -1,38 +1,30 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import PropTypes from 'prop-types'
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch} from "react-redux";
 
-export default function TestAuto({textLabel, arrayUl, id}) {
-    const [text, setText] = useState('');
+export default function TestAuto({textLabel, arrayUl, id, currentText}) {
+    const [text, setText] = useState(currentText ? currentText : '');
     const [showUl, setShowUl] = useState(false);
-    const orders = useSelector(state => state.order);
     const dispatch = useDispatch();
+    const addInStore = useCallback((type, payload) => dispatch({type: type, payload: payload}));
 
-    const renderElemLi = () => {
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside, false);
+    }, []);
+
+    const handleClickOutside = event => {
+        return event.target.tagName !== 'INPUT' ? setShowUl(false) : null
+    };
+
+    const renderElemUl = () => {
         return(
             <ul>
                 {arrayUl.map(({name, id, address}) => {
-                    // const textText = text.charAt(0).toUpperCase() + text.slice(1);
-                    // return (name.includes(textText) ?
-                    //     <li key={id} onClick={() => {
-                    //         setText(name);
-                    //         setShowUl(false);
-                    //         dispatch({type: "GET_ORDER", payload: {cityId: {name, id}}});
-                    //     }}>{name}</li>
-                    //     :
-                    //     null)
                     return address ? (address.includes(text) ?
                         <li key={id} onClick={() => {
                             setText(address);
                             setShowUl(false);
-                            dispatch(
-                                {type: "GET_ORDER",
-                                    payload: {
-                                        pointId: {address, id},
-                                        cityId: orders.cityId
-                                    }
-                                }
-                            );
+                            addInStore("GET_POINT", {pointId: {address, id}});
                         }}>{address}</li>
                         :
                         null)
@@ -41,7 +33,7 @@ export default function TestAuto({textLabel, arrayUl, id}) {
                         <li key={id} onClick={() => {
                             setText(name);
                             setShowUl(false);
-                            dispatch({type: "GET_ORDER", payload: {cityId: {name, id}}});
+                            addInStore("GET_CITY", {cityId: {name, id}})
                         }}>{name}</li>
                         :
                         null)
@@ -52,7 +44,7 @@ export default function TestAuto({textLabel, arrayUl, id}) {
 
     return(
         <>
-            <label htmlFor={id}>{textLabel}:</label>
+            {textLabel ? <label htmlFor={id}>{textLabel}</label> : null}
             <input type="text"
                    className="form-control"
                    id={id}
@@ -63,13 +55,14 @@ export default function TestAuto({textLabel, arrayUl, id}) {
                    placeholder="Начните вводить город ..."
             />
             <span onClick={() => setText('')}>х</span>
-            {showUl && renderElemLi()}
+            {showUl && renderElemUl()}
         </>
     )
 }
 
 TestAuto.propTypes = {
     textLabel: PropTypes.string,
-    arrayUl: PropTypes.array,
-    id: PropTypes.string
+    arrayUl: PropTypes.array.isRequired,
+    id: PropTypes.string.isRequired,
+    currentText: PropTypes.string
 };

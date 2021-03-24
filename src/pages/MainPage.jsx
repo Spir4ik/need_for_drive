@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import iconCity from '../assets/icon-city.svg'
 import Slider from "../components/Slider.jsx";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
@@ -8,7 +8,6 @@ import {useSelector} from "react-redux";
 import "../styles/index.scss"
 
 export default function () {
-    const [showAutocomplete, setShowAutocomplete] = useState(true);
     const cityName = useSelector(state => state.order);
 
     return(
@@ -22,11 +21,10 @@ export default function () {
                         </div>
                         <div className="header__city">
                             <img src={iconCity} alt=""/>
-                           {showAutocomplete ?
-                               <Autocomplete showAutoFunc={setShowAutocomplete}/>
-                               :
-                               <p onClick={() => setShowAutocomplete(true)}>{cityName.cityId.name}</p>
-                           }
+                            {cityName.cityId.hasOwnProperty('name') ?
+                                <p>{cityName.cityId.name}</p> :
+                                <Autocomplete />
+                            }
                         </div>
                     </div>
                     <div className="content__hero-block">

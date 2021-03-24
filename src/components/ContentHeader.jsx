@@ -11,7 +11,7 @@ export default function () {
             </div>
             <div className="header__city">
                 <img src={iconCity} alt=""/>
-                {cityName.hasOwnProperty('cityId') ? <p>{cityName.cityId.name}</p> : <p>Выберете город</p>}
+                {cityName.cityId.hasOwnProperty('name') ? <p>{cityName.cityId.name}</p> : <p>Выберите город</p>}
             </div>
         </div>
     )

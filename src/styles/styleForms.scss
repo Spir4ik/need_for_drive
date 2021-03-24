@@ -5,6 +5,10 @@
     width: 200px;
     margin-top: 0;
     margin-right: 55px;
+    ul {
+      margin: 20px 0 0 10px;
+      width: 173px;
+    }
   }
   @media (max-width: 767px) {
     width: 320px;
@@ -61,11 +65,14 @@
         outline: none;
       }
     label {
-      width: 150px;
+      width: 155px;
       font-style: normal;
       font-weight: 300;
       font-size: 14px;
       line-height: 16px;
+      &.main-page {
+        width: 0;
+      }
       &:first-child {
         text-align: end;
       }
