@@ -1,9 +1,7 @@
-import React, {useEffect} from 'react'
-import axios from "axios";
-import login from "./api/login";
-import requestCitys from "./api/requestCity";
+import React from 'react'
 import MainPage from "./pages/MainPage.jsx";
 import CarReservation from "./pages/CarReservation.jsx";
+import ModelsPage from "./pages/ModelsPage.jsx";
 import {Route, Switch} from "react-router";
 import "./styles/index.scss"
 
@@ -13,6 +11,7 @@ export default function () {
         <Switch>
             <Route exact path="/" component={MainPage} />
             <Route path="/carreservation" component={CarReservation} />
+            <Route path="/modelspage" component={ModelsPage} />
         </Switch>
     )
 }

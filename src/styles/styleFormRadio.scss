@@ -1,0 +1,35 @@
+.form_radio {
+  padding-top: 32px;
+  label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 20px;
+    margin-right: 16px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    user-select: none;
+    color: #999999;
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 18px;
+      position: absolute;
+      left: 0;
+      top: 1px;
+      background: url(../images/iconRadio.png) 0 0 no-repeat;
+    }
+  }
+  input[type=radio] {
+    display: none;
+    &:checked + label {
+      color: black;
+      &:before {
+        background: url(../images/iconRadioChecked.png) 0 0 no-repeat;
+      }
+    }
+  }
+}

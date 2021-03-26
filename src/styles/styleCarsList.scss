@@ -1,0 +1,52 @@
+.cars__list {
+  max-width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 60vh;
+  overflow-y: auto;
+  margin-top: 48px;
+  .cars__card {
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    width: 368px;
+    height: 224px;
+    border: 1px solid #EEEEEE;
+    .card__header {
+      margin: 16px 0 0 16px;
+      text-transform: uppercase;
+      .header__name {
+        span {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 18px;
+          line-height: 21px;
+        }
+      }
+      .header__price {
+        span {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 17px;
+          line-height: 16px;
+          color: #999999;
+        }
+      }
+    }
+    .card__image {
+      display: flex;
+      img {
+        margin-left: auto;
+        width: 256px;
+        height: 116px;
+      }
+    }
+    &:hover {
+      border: 1px solid #999999;
+      cursor: pointer;
+    }
+    &:active {
+      border: 1px solid #0EC261;
+    }
+  }
+}

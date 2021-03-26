@@ -1,6 +1,7 @@
 import React from 'react'
 import {useSelector} from "react-redux";
 import '../styles/styleInfoAboutOrder.scss'
+import {Link} from "react-router-dom";
 
 export default function () {
     const orders = useSelector(state => state.order);
@@ -39,7 +40,9 @@ export default function () {
                 </div>
                 <div className="info-about-order__header__footer">
                     <span><strong>Цена</strong>: от 8 000 до 12 000 ₽</span>
-                    <button>Выбрать модель</button>
+                    <Link to="/modelspage">
+                        <button>Выбрать модель</button>
+                    </Link>
                 </div>
             </div>
         </div>
