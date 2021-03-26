@@ -853,7 +853,8 @@ body {
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
-  line-height: 16px; }
+  line-height: 16px;
+  color: #999999; }
   @media (max-width: 767px) {
     .breadcrumb {
       font-size: 8px; } }
@@ -904,7 +905,7 @@ body {
       justify-content: flex-end; }
       .content__info-about-order .containers .info-about-order__header p {
         font-style: normal;
-        font-weight: 500;
+        font-weight: bold;
         font-size: 18px;
         color: #121212; }
     .content__info-about-order .containers .info-about-order__header__body {
@@ -949,4 +950,72 @@ body {
         border: none; }
         .content__info-about-order .containers .info-about-order__header__footer button:hover {
           cursor: pointer; }
+
+.form_radio {
+  padding-top: 32px; }
+  .form_radio label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 20px;
+    margin-right: 16px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    user-select: none;
+    color: #999999; }
+    .form_radio label:before {
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 18px;
+      position: absolute;
+      left: 0;
+      top: 1px;
+      background: url(3de19ed88082fcb489146681cd0f2ed0.png) 0 0 no-repeat; }
+  .form_radio input[type=radio] {
+    display: none; }
+    .form_radio input[type=radio]:checked + label {
+      color: black; }
+      .form_radio input[type=radio]:checked + label:before {
+        background: url(8e8614885eba2825634326eeb0008672.png) 0 0 no-repeat; }
+
+.cars__list {
+  max-width: 750px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 48px; }
+  .cars__list .cars__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 368px;
+    height: 224px;
+    border: 1px solid #EEEEEE; }
+    .cars__list .cars__card .card__header {
+      margin: 16px 0 0 16px;
+      text-transform: uppercase; }
+      .cars__list .cars__card .card__header .header__name span {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 21px; }
+      .cars__list .cars__card .card__header .header__price span {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 17px;
+        line-height: 16px;
+        color: #999999; }
+    .cars__list .cars__card .card__image {
+      display: flex; }
+      .cars__list .cars__card .card__image img {
+        margin-left: auto;
+        width: 256px;
+        height: 116px; }
+    .cars__list .cars__card:hover {
+      border: 1px solid #999999;
+      cursor: pointer; }
+    .cars__list .cars__card:active {
+      border: 1px solid #0EC261; }
 
