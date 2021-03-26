@@ -982,10 +982,12 @@ body {
         background: url(8e8614885eba2825634326eeb0008672.png) 0 0 no-repeat; }
 
 .cars__list {
-  max-width: 750px;
+  max-width: 800px;
   display: flex;
   flex-wrap: wrap;
-  padding-top: 48px; }
+  height: 60vh;
+  overflow-y: auto;
+  margin-top: 48px; }
   .cars__list .cars__card {
     display: flex;
     flex-direction: column;
