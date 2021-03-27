@@ -1,80 +1,68 @@
-import React, {useState, useEffect} from 'react'
-import axios from "axios";
-import {useSelector} from "react-redux";
-import {useLocation} from "react-router-dom";
-import requestCity from "../api/requestCity";
-import requestPoint from "../api/requestPoint";
-import TestAuto from "./TestAuto.jsx";
-import '../styles/styleForms.scss'
+import React, {useState, useEffect, useCallback} from 'react'
+import PropTypes from 'prop-types'
+import {useDispatch} from "react-redux";
 
-export default function Autocomplete() {
-    const orders = useSelector(state => state.order);
-    const [textCity, _] = useState(orders.cityId.hasOwnProperty('name') ? orders.cityId.name : '');
-    const [textPoint, setTextPoint] = useState(orders.pointId.hasOwnProperty('address') ? orders.pointId.address : '');
-    const [listCountry, setListCountry] = useState([]);
-    const [listPoint, setListPoint] = useState([]);
-    const location = useLocation();
+export default function TestAuto({textLabel, arrayUl, id, currentText}) {
+    const [text, setText] = useState(currentText ? currentText : '');
+    const [showUl, setShowUl] = useState(false);
+    const dispatch = useDispatch();
+    const addInStore = useCallback((type, payload) => dispatch({type: type, payload: payload}));
 
     useEffect(() => {
-        async function fetchDataCity() {
-            try {
-                await axios(requestCity('city'))
-                    .then(res => setListCountry(res.data.data))
-            }
-            catch (e) {
-                alert('Ошибка')
-            }
-        }
-        fetchDataCity()
+        document.addEventListener('click', handleClickOutside, false);
     }, []);
 
-    useEffect(() => {
-        async function fetchDataPoint() {
-            const cityId = orders.cityId.id;
-            try {
-                await axios(requestPoint(cityId))
-                    .then(res => setListPoint(res.data.data))
-            }
-            catch (e) {
-                alert('Ошибка с адресом!')
-            }
-        }
-        orders.cityId.hasOwnProperty('name') ? fetchDataPoint() : null;
-    }, [orders]);
+    const handleClickOutside = event => {
+        return event.target.tagName !== 'INPUT' ? setShowUl(false) : null
+    };
+
+    const renderElemUl = () => {
+        return(
+            <ul>
+                {arrayUl.map(({name, id, address}) => {
+                    return address ? (address.includes(text) ?
+                        <li key={id} onClick={() => {
+                            setText(address);
+                            setShowUl(false);
+                            addInStore("GET_POINT", {pointId: {address, id}});
+                        }}>{address}</li>
+                        :
+                        null)
+                        :
+                        (name.includes(text) ?
+                        <li key={id} onClick={() => {
+                            setText(name);
+                            setShowUl(false);
+                            addInStore("GET_CITY", {cityId: {name, id}})
+                        }}>{name}</li>
+                        :
+                        null)
+                })}
+            </ul>
+        )
+    };
 
     return(
         <>
-        {location.pathname === "/carreservation" ? <div className="autocomplete">
-            <form>
-                <div className="forms__city">
-                    <TestAuto
-                        currentText={textCity}
-                        textLabel="Город:"
-                        arrayUl={listCountry}
-                        id="city"
-                    />
-                </div>
-                <div className="forms__point">
-                    <TestAuto
-                        currentText={textPoint}
-                        textLabel="Пункт выдачи:"
-                        arrayUl={listPoint}
-                        id="point"
-                    />
-                </div>
-            </form>
-        </div>
-        :
-        <div className="autocomplete main-page">
-            <form>
-                <div className="forms__city main-page">
-                    <TestAuto
-                        arrayUl={listCountry}
-                        id="city"
-                    />
-                </div>
-            </form>
-        </div>}
+            {textLabel ? <label htmlFor={id}>{textLabel}</label> : null}
+            <input type="text"
+                   className="form-control"
+                   id={id}
+                   autoComplete="off"
+                   onChange={(e) => setText(e.target.value)}
+                   onClick={() => setShowUl(true)}
+                   value={text}
+                   placeholder="Начните вводить город ..."
+            />
+            <span onClick={() => setText('')}>х</span>
+            {showUl && renderElemUl()}
         </>
     )
 }
+
+TestAuto.propTypes = {
+    textLabel: PropTypes.string,
+    arrayUl: PropTypes.array.isRequired,
+    id: PropTypes.string.isRequired,
+    currentText: PropTypes.string
+};
