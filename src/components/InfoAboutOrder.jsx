@@ -8,11 +8,10 @@ export default function () {
 
     const renderInfoBody = (bodyText, bodyCity, bodyFooter) => {
         return(
-            <>
+            <div className="test">
                 <div className="body__text">
                     <span>{bodyText}</span>
                 </div>
-                {/*<div className="body__line"></div>*/}
                 <div className="body__point">
                     {bodyCity && <div className="city">
                         <span>{bodyCity},</span>
@@ -21,7 +20,7 @@ export default function () {
                         <span>{bodyFooter}</span>
                     </div>
                 </div>
-            </>
+            </div>
         )
     };
 
@@ -32,30 +31,13 @@ export default function () {
                     <p>Ваш заказ:</p>
                 </div>
                 <div className="info-about-order__header__body">
-                    {/*{orders.cityId.hasOwnProperty('name') && orders.pointId.hasOwnProperty('address') ?*/}
-                    {/*    renderInfoBody('Пункт выдачи', orders.cityId.name, orders.pointId.address)*/}
-                    {/*    :*/}
-                    {/*    renderInfoBody('Пункт выдачи', 'Выберите го.', 'Выберите п-т')*/}
-                    {/*}*/}
-                    {/*{orders.carId.hasOwnProperty('id') ? renderInfoBody('Модель', false, orders.carId.name) : null}*/}
-                    <div className="body__text">
-                        <span>test</span>
-                    </div>
-                    {/*<div className="body__line"></div>*/}
-                    <div className="body__point">
-                        <div className="address">
-                            <span>helllo woooorld</span>
-                        </div>
-                    </div>
-                    <div className="body__text">
-                        <span>test</span>
-                    </div>
-                    {/*<div className="body__line"></div>*/}
-                    <div className="body__point">
-                        <div className="address">
-                            <span>helllo woooorld</span>
-                        </div>
-                    </div>
+                    {orders.cityId.hasOwnProperty('name') && orders.pointId.hasOwnProperty('address') ?
+                        renderInfoBody('Пункт выдачи', orders.cityId.name, orders.pointId.address)
+                        :
+                        renderInfoBody('Пункт выдачи', 'Выберите го.', 'Выберите п-т')
+                    }
+                    {orders.carId.hasOwnProperty('id') ? renderInfoBody('Модель', false, orders.carId.name) : null}
+
 
                 </div>
                 <div className="info-about-order__header__footer">
