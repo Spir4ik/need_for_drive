@@ -10,6 +10,7 @@ export default function () {
     const [currentCategory, setCurrentCategory] = useState('');
     const [arrayCars, setArrayCars] = useState([]);
     useEffect(() => {
+        setArrayCars([]);
         async function fetchAllCars() {
             try {
                 await axios(requestCity('car')).then(res => setArrayCars(res.data.data))
@@ -32,7 +33,7 @@ export default function () {
 
     const handleChange = (category) => {
         return setCurrentCategory(category)
-    }
+    };
 
     return(
         <>

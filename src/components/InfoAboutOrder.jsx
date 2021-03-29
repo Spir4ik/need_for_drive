@@ -2,9 +2,30 @@ import React from 'react'
 import {useSelector} from "react-redux";
 import '../styles/styleInfoAboutOrder.scss'
 import {Link} from "react-router-dom";
+import {useRouteMatch} from "react-router-dom";
 
 export default function () {
     const orders = useSelector(state => state.order);
+    const {path} = useRouteMatch();
+
+    const renderBtn = () => {
+        switch (path) {
+            case "/carreservation":
+                return(
+                    <Link to="/modelspage">
+                        <button>Выбрать модель</button>
+                    </Link>
+                );
+            case "/modelspage":
+                return(
+                    <Link to="/additional">
+                        <button>Дополнительно</button>
+                    </Link>
+                );
+            default:
+                return null;
+        }
+    }
 
     const renderInfoBody = (bodyText, bodyCity, bodyFooter) => {
         return(
@@ -42,9 +63,7 @@ export default function () {
                 </div>
                 <div className="info-about-order__header__footer">
                     <span><strong>Цена</strong>: от 8 000 до 12 000 ₽</span>
-                    <Link to="/modelspage">
-                        <button>Выбрать модель</button>
-                    </Link>
+                    {renderBtn()}
                 </div>
             </div>
         </div>
