@@ -2,7 +2,7 @@ import React, {useState, useEffect, useCallback} from 'react'
 import PropTypes from 'prop-types'
 import {useDispatch} from "react-redux";
 
-export default function TestAuto({textLabel, arrayUl, id, currentText}) {
+export default function Autocomplete({textLabel, arrayUl, id, currentText}) {
     const [text, setText] = useState(currentText ? currentText : '');
     const [showUl, setShowUl] = useState(false);
     const dispatch = useDispatch();
@@ -60,7 +60,7 @@ export default function TestAuto({textLabel, arrayUl, id, currentText}) {
     )
 }
 
-TestAuto.propTypes = {
+Autocomplete.propTypes = {
     textLabel: PropTypes.string,
     arrayUl: PropTypes.array.isRequired,
     id: PropTypes.string.isRequired,

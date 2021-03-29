@@ -15,11 +15,18 @@ const order = handleActions({
                 pointId
             }
         },
+        [actions.getCar](state, {payload: { carId }}) {
+            return{
+                ...state,
+                carId
+            }
+        }
     }, {
             cityId: {},
-            pointId: {}
+            pointId: {},
+            carId: {},
         }
-)
+);
 
 export default combineReducers({
     order

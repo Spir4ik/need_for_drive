@@ -23,26 +23,35 @@
     .info-about-order__header__body {
       display: flex;
       align-items: flex-end;
+      flex-wrap: wrap;
       font-style: normal;
       font-weight: 300;
       font-size: 14px;
       line-height: 16px;
       .body__text {
-        flex: 0 0 33%;
-      }
-      .body__line {
-        margin: 0 12px 0 12px;
-        border-bottom: 1px dotted #999999;
-        flex: 0 0 26%;
-      }
-      .body__point {
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-        .city, .address {
-          text-align: right;
+        &:after {
+          content: '';
+          display: inline-block;
+          border-bottom: 1px dotted #999999;
+          width: 100px;
         }
       }
+      //.body__text {
+      //  flex: 0 0 33%;
+      //}
+      //.body__line {
+      //  margin: 0 12px 0 12px;
+      //  border-bottom: 1px dotted #999999;
+      //  flex: 0 0 26%;
+      //}
+      //.body__point {
+      //  display: flex;
+      //  flex-direction: column;
+      //  justify-content: end;
+      //  .city, .address {
+      //    text-align: right;
+      //  }
+      //}
     }
     .info-about-order__header__footer {
       flex-direction: column;

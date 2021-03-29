@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import requestCity from '../api/requestCity';
 import requestPoint from '../api/requestPoint';
-import TestAuto from './TestAuto.jsx';
+import Autocomplete from './Autocomplete.jsx';
 import "../styles/styleForms.scss";
 
-export default function Autocomplete() {
+export default function Forms() {
   const orders = useSelector(state => state.order);
   const [textCity, _] = useState(orders.cityId.hasOwnProperty('name') ? orders.cityId.name : '');
   const [textPoint, setTextPoint] = useState(orders.pointId.hasOwnProperty('address') ? orders.pointId.address : '');
@@ -45,7 +45,7 @@ export default function Autocomplete() {
         {location.pathname === "/carreservation" ? <div className="autocomplete">
               <form>
                 <div className="forms__city">
-                  <TestAuto
+                  <Autocomplete
                       currentText={textCity}
                       textLabel="Город:"
                       arrayUl={listCountry}
@@ -53,7 +53,7 @@ export default function Autocomplete() {
                   />
                 </div>
                 <div className="forms__point">
-                  <TestAuto
+                  <Autocomplete
                       currentText={textPoint}
                       textLabel="Пункт выдачи:"
                       arrayUl={listPoint}
@@ -66,7 +66,7 @@ export default function Autocomplete() {
             <div className="autocomplete main-page">
               <form>
                 <div className="forms__city main-page">
-                  <TestAuto
+                  <Autocomplete
                       arrayUl={listCountry}
                       id="city"
                   />

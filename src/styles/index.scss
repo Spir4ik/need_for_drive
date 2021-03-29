@@ -59,7 +59,6 @@ body {
       display: flex;
       align-items: center;
       .header__logo {
-        //font-family: Roboto;
         flex: 1 0 auto;
         font-style: normal;
         font-weight: bold;
@@ -126,6 +125,9 @@ body {
           font-size: 18px;
           line-height: 1;
         }
+        @media (max-width: 1024px) {
+          font-size: 24px;
+        }
       }
       .hero__block__btn {
         @media (max-width: 767px) {
@@ -148,6 +150,7 @@ body {
           outline: none;
           &:hover {
             cursor: pointer;
+            background: linear-gradient(90deg, #0B934A 2.61%, #026E47 112.6%);
           }
           @media (max-width: 767px) {
             margin: 40px 0 0 0;
@@ -166,7 +169,7 @@ body {
         background-color: $bc-header;
         flex-direction: column-reverse;
         margin-top: auto;
-        height: 10%;
+        height: 9%;
         margin-bottom: 0;
         margin-left: -20px;
       }

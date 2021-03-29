@@ -18,7 +18,7 @@ export default function () {
                                     {title}
                                 </div>
                                 <div className="preImg__footer">
-                                    {info}
+                                    <p>{info}</p>
                                 </div>
                                 <div className="preImg__btn">
                                     <button style={{background: background}}>Подробнее</button>

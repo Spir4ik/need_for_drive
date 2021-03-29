@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from "axios";
 import CarCard from "./CarCard.jsx";
 import requestCity from "../api/requestCity";
+import Spinner from "./Spinner/Spinner.jsx";
 import '../styles/styleFormRadio.scss'
 import '../styles/styleCarsList.scss'
 
@@ -9,23 +10,6 @@ export default function () {
     const [currentCategory, setCurrentCategory] = useState('');
     const [arrayCars, setArrayCars] = useState([]);
     useEffect(() => {
-        // async function fetchCars() {
-        //     try {
-        //         await axios({
-        //             url: `https://api-factory.simbirsoft1.com/api/db/car?categoryId=5e25c99a099b810b946c5d63`,
-        //             method: 'GET',
-        //             headers: {
-        //                 'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b',
-        //                 'Authorization': 'Basic MTJmNHY4aTo0Y2JjZWE5NmRl',
-        //                 'Content-type': 'application/json'
-        //             }
-        //         }).then(res => console.log(res))
-        //     }
-        //     catch (e) {
-        //         alert(e)
-        //     }
-        // }
-        // fetchCars()
         async function fetchAllCars() {
             try {
                 await axios(requestCity('car')).then(res => setArrayCars(res.data.data))
@@ -49,8 +33,6 @@ export default function () {
     const handleChange = (category) => {
         return setCurrentCategory(category)
     }
-
-    console.log(arrayCars);
 
     return(
         <>
@@ -84,17 +66,20 @@ export default function () {
                     <label htmlFor="radio-3">Премиум</label>
             </div>
             <div className="cars__list">
-                {arrayCars.map(({id, name, priceMax, priceMin, thumbnail}) => {
-                    return(
-                        <CarCard
-                        key={id}
-                        name={name}
-                        priceMax={priceMax}
-                        priceMin={priceMin}
-                        thumbnail={thumbnail}
-                        />
-                    )
-                })}
+                {arrayCars.length === 0 ? <Spinner />
+                : arrayCars.map(({id, name, priceMax, priceMin, thumbnail}) => {
+                        return(
+                            <CarCard
+                                key={id}
+                                id={id}
+                                name={name}
+                                priceMax={priceMax}
+                                priceMin={priceMin}
+                                thumbnail={thumbnail}
+                            />
+                        )
+                    })
+                }
             </div>
         </>
     )

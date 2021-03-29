@@ -2,10 +2,9 @@ import React from 'react'
 import iconCity from '../assets/icon-city.svg'
 import Slider from "../components/Slider.jsx";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
-import Autocomplete from "../components/Autocomplete.jsx";
+import Forms from "../components/Forms.jsx";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
-import "../styles/index.scss"
 
 export default function () {
     const cityName = useSelector(state => state.order);
@@ -23,7 +22,7 @@ export default function () {
                             <img src={iconCity} alt=""/>
                             {cityName.cityId.hasOwnProperty('name') ?
                                 <p>{cityName.cityId.name}</p> :
-                                <Autocomplete />
+                                <Forms />
                             }
                         </div>
                     </div>

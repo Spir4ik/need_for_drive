@@ -12,7 +12,7 @@ export default function () {
                 <div className="body__text">
                     <span>{bodyText}</span>
                 </div>
-                <div className="body__line"></div>
+                {/*<div className="body__line"></div>*/}
                 <div className="body__point">
                     {bodyCity && <div className="city">
                         <span>{bodyCity},</span>
@@ -32,11 +32,31 @@ export default function () {
                     <p>Ваш заказ:</p>
                 </div>
                 <div className="info-about-order__header__body">
-                    {orders.cityId.hasOwnProperty('name') && orders.pointId.hasOwnProperty('address') ?
-                        renderInfoBody('Пункт выдачи', orders.cityId.name, orders.pointId.address)
-                        :
-                        renderInfoBody('Пункт выдачи', 'Выберите го.', 'Выберите п-т')
-                    }
+                    {/*{orders.cityId.hasOwnProperty('name') && orders.pointId.hasOwnProperty('address') ?*/}
+                    {/*    renderInfoBody('Пункт выдачи', orders.cityId.name, orders.pointId.address)*/}
+                    {/*    :*/}
+                    {/*    renderInfoBody('Пункт выдачи', 'Выберите го.', 'Выберите п-т')*/}
+                    {/*}*/}
+                    {/*{orders.carId.hasOwnProperty('id') ? renderInfoBody('Модель', false, orders.carId.name) : null}*/}
+                    <div className="body__text">
+                        <span>test</span>
+                    </div>
+                    {/*<div className="body__line"></div>*/}
+                    <div className="body__point">
+                        <div className="address">
+                            <span>helllo woooorld</span>
+                        </div>
+                    </div>
+                    <div className="body__text">
+                        <span>test</span>
+                    </div>
+                    {/*<div className="body__line"></div>*/}
+                    <div className="body__point">
+                        <div className="address">
+                            <span>helllo woooorld</span>
+                        </div>
+                    </div>
+
                 </div>
                 <div className="info-about-order__header__footer">
                     <span><strong>Цена</strong>: от 8 000 до 12 000 ₽</span>

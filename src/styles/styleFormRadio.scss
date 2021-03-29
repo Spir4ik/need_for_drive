@@ -20,7 +20,7 @@
       position: absolute;
       left: 0;
       top: 1px;
-      background: url(../images/iconRadio.png) 0 0 no-repeat;
+      background: url(../assets/imageRadio/iconRadio.png) 0 0 no-repeat;
     }
   }
   input[type=radio] {
@@ -28,7 +28,7 @@
     &:checked + label {
       color: black;
       &:before {
-        background: url(../images/iconRadioChecked.png) 0 0 no-repeat;
+        background: url(../assets/imageRadio/iconRadioChecked.png) 0 0 no-repeat;
       }
     }
   }

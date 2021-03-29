@@ -1,5 +1,5 @@
 import React from 'react'
-import map from '../images/Rectangle.png'
+import map from '../assets/Rectangle.png'
 
 export default function () {
     return(
