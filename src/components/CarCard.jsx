@@ -1,13 +1,14 @@
-import React, {useCallback} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {useDispatch} from "react-redux";
 import noImage from '../assets/no-image.png'
+import {addCarInStore} from "../actions/actions";
 
 export default function CarCard({id, name, priceMax, priceMin, thumbnail, colors, number, tank}) {
     const dispatch = useDispatch();
-    const addInStore = useCallback((type, payload) => dispatch({type: type, payload: payload}));
+
     return(
-        <div className="cars__card" onClick={() => addInStore("GET_CAR", {carId: {id, name, priceMax, priceMin, thumbnail, colors, number, tank}})}>
+        <div className="cars__card" onClick={() => dispatch(addCarInStore({id, name, priceMax, priceMin, thumbnail, colors, number, tank}))}>
             <div className="card__header">
                 <div className="header__name">
                     <span>{name}</span>
@@ -20,8 +21,8 @@ export default function CarCard({id, name, priceMax, priceMin, thumbnail, colors
                 <img src={thumbnail.path}
                      onError={(e) =>
                          {
-                             e.target.onerror = null;
-                            e.target.src="../assets/no-image.png"
+                            e.target.onerror = null;
+                            e.target.src='../assets/no-image.png'
                          }
                      } alt=""/>
             </div>

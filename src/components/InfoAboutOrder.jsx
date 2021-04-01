@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {useRouteMatch} from "react-router-dom";
 
 export default function () {
-    const orders = useSelector(state => state.order);
+    const store = useSelector(state => state.storeReducer);
     const {path} = useRouteMatch();
 
     const renderBtn = () => {
@@ -52,17 +52,21 @@ export default function () {
                     <p>Ваш заказ:</p>
                 </div>
                 <div className="info-about-order__header__body">
-                    {orders.cityId.hasOwnProperty('name') && orders.pointId.hasOwnProperty('address') ?
-                        renderInfoBody('Пункт выдачи', orders.cityId.name, orders.pointId.address)
+                    {store.cityId.hasOwnProperty('name') && store.pointId.hasOwnProperty('address') ?
+                        renderInfoBody('Пункт выдачи', store.cityId.name, store.pointId.address)
                         :
                         renderInfoBody('Пункт выдачи', 'Выберите го.', 'Выберите п-т')
                     }
-                    {orders.carId.hasOwnProperty('id') ? renderInfoBody('Модель', false, orders.carId.name) : null}
+                    {store.carId.hasOwnProperty('id') ? renderInfoBody('Модель', false, store.carId.name) : null}
 
 
                 </div>
                 <div className="info-about-order__header__footer">
-                    <span><strong>Цена</strong>: от 8 000 до 12 000 ₽</span>
+                    {store.carId.hasOwnProperty('id') ?
+                        <span><strong>Цена</strong>: от {store.carId.priceMin} до {store.carId.priceMax} ₽</span>
+                        :
+                        null
+                    }
                     {renderBtn()}
                 </div>
             </div>

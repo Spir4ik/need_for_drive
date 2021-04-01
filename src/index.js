@@ -2,11 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App.jsx'
 import {HashRouter} from "react-router-dom";
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import {Provider} from 'react-redux'
-import reducers from "./reducer"
+import reducer from "./reducer/reducer"
+import thunk from 'redux-thunk';
 
-const store = createStore(reducers);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={store}>

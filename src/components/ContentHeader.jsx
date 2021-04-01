@@ -3,7 +3,7 @@ import iconCity from "../assets/icon-city.svg";
 import {useSelector} from "react-redux";
 
 export default function () {
-    const cityName = useSelector(state => state.order);
+    const store = useSelector(state => state.storeReducer);
     return(
         <div className="content__header">
             <div className="header__logo">
@@ -11,7 +11,7 @@ export default function () {
             </div>
             <div className="header__city">
                 <img src={iconCity} alt=""/>
-                {cityName.cityId.hasOwnProperty('name') ? <p>{cityName.cityId.name}</p> : <p>Выберите город</p>}
+                {store.cityId.hasOwnProperty('name') ? <p>{store.cityId.name}</p> : <p>Выберите город</p>}
             </div>
         </div>
     )

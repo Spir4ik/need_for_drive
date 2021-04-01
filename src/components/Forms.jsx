@@ -1,44 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import requestCity from '../api/requestCity';
-import requestPoint from '../api/requestPoint';
 import Autocomplete from './Autocomplete.jsx';
 import "../styles/styleForms.scss";
+import {addCity, addPoint} from "../actions/actions";
 
 export default function Forms() {
-  const orders = useSelector(state => state.order);
-  const [textCity, _] = useState(orders.cityId.hasOwnProperty('name') ? orders.cityId.name : '');
-  const [textPoint, setTextPoint] = useState(orders.pointId.hasOwnProperty('address') ? orders.pointId.address : '');
-  const [listCountry, setListCountry] = useState([]);
-  const [listPoint, setListPoint] = useState([]);
+  const cities = useSelector(state => state.cityReducer);
+  const points = useSelector(state => state.pointReducer);
+  const store = useSelector(state => state.storeReducer);
+  const [textCity, _] = useState(store.cityId.hasOwnProperty('name') ? store.cityId.name : '');
+  const [textPoint, setTextPoint] = useState(store.pointId.hasOwnProperty('address') ? store.pointId.address : '');
+  const dispatch = useDispatch();
   const location = useLocation();
 
+  useEffect(() => dispatch(addCity()), []);
   useEffect(() => {
-    async function fetchDataCity() {
-      try {
-        await axios(requestCity('city'))
-          .then(res => setListCountry(res.data.data));
-      } catch (e) {
-        alert('Ошибка');
-      }
-    }
-    fetchDataCity();
-  }, []);
+    store.cityId.hasOwnProperty('name') ? dispatch(addPoint(store.cityId.id)) : null;
+  }, [store]);
 
-  useEffect(() => {
-    async function fetchDataPoint() {
-      const cityId = orders.cityId.id;
-      try {
-        await axios(requestPoint(cityId))
-          .then(res => setListPoint(res.data.data));
-      } catch (e) {
-        alert('Ошибка с адресом!');
-      }
-    }
-    orders.cityId.hasOwnProperty('name') ? fetchDataPoint() : null;
-  }, [orders]);
+  console.log(store);
 
   return (
       <>
@@ -48,7 +29,7 @@ export default function Forms() {
                   <Autocomplete
                       currentText={textCity}
                       textLabel="Город:"
-                      arrayUl={listCountry}
+                      arrayUl={cities.city}
                       id="city"
                   />
                 </div>
@@ -56,7 +37,7 @@ export default function Forms() {
                   <Autocomplete
                       currentText={textPoint}
                       textLabel="Пункт выдачи:"
-                      arrayUl={listPoint}
+                      arrayUl={points.point}
                       id="point"
                   />
                 </div>
@@ -67,7 +48,7 @@ export default function Forms() {
               <form>
                 <div className="forms__city main-page">
                   <Autocomplete
-                      arrayUl={listCountry}
+                      arrayUl={cities.city}
                       id="city"
                   />
                 </div>

@@ -1,14 +1,18 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import iconCity from '../assets/icon-city.svg'
 import Slider from "../components/Slider.jsx";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
 import Forms from "../components/Forms.jsx";
 import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import {addCity} from "../actions/actions";
 
 export default function () {
-    const cityName = useSelector(state => state.order);
-
+    const cityName = useSelector(state => state.cityReducer);
+    const store = useSelector(state => state.storeReducer);
+    const dispatch = useDispatch();
+    useEffect(() => dispatch(addCity()), []);
+    console.log(store);
     return(
         <div className="wrapper">
             <div className="container">
@@ -20,8 +24,8 @@ export default function () {
                         </div>
                         <div className="header__city">
                             <img src={iconCity} alt=""/>
-                            {cityName.cityId.hasOwnProperty('name') ?
-                                <p>{cityName.cityId.name}</p> :
+                            {store.cityId.hasOwnProperty('name') ?
+                                <p>{store.cityId.name}</p> :
                                 <Forms />
                             }
                         </div>
