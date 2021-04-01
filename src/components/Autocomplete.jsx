@@ -1,15 +1,20 @@
-import React, {useState, useEffect, useCallback} from 'react'
-import PropTypes from 'prop-types'
+import React, {useState, useEffect, useCallback, useRef} from 'react';
+import PropTypes from 'prop-types';
 import {useDispatch} from "react-redux";
+import iconClear from '../assets/icon-clear.svg'
 
 export default function Autocomplete({textLabel, arrayUl, id, currentText}) {
     const [text, setText] = useState(currentText ? currentText : '');
     const [showUl, setShowUl] = useState(false);
     const dispatch = useDispatch();
     const addInStore = useCallback((type, payload) => dispatch({type: type, payload: payload}));
+    const value = useRef(null)
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside, false);
+        return () => {
+            document.removeEventListener('click', handleClickOutside, false);
+        }
     }, []);
 
     const handleClickOutside = event => {
@@ -48,13 +53,23 @@ export default function Autocomplete({textLabel, arrayUl, id, currentText}) {
             <input type="text"
                    className="form-control"
                    id={id}
+                   ref={value}
                    autoComplete="off"
                    onChange={(e) => setText(e.target.value)}
                    onClick={() => setShowUl(true)}
                    value={text}
                    placeholder="Начните вводить город ..."
             />
-            <span onClick={() => setText('')}>х</span>
+            {/*{text && <img src={iconClear}*/}
+            {/*     onClick={() => setText('')}*/}
+            {/*     alt=""*/}
+            {/*/>}*/}
+            <div className="clear__item">
+                <img src={iconClear}
+                     onClick={() => setText('')}
+                     alt=""
+                />
+            </div>
             {showUl && renderElemUl()}
         </>
     )

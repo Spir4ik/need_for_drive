@@ -1,0 +1,33 @@
+.date {
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  padding-top: 16px;
+  .date__from {
+    display: flex;
+    justify-content: flex-end;
+    label {
+      align-items: center;
+    }
+    input {
+      width: 224px;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+  .date__to {
+    input {
+      width: 224px;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+}

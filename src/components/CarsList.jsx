@@ -68,11 +68,14 @@ export default function () {
             </div>
             <div className="cars__list">
                 {arrayCars.length === 0 ? <Spinner />
-                : arrayCars.map(({id, name, priceMax, priceMin, thumbnail}) => {
+                : arrayCars.map(({id, name, priceMax, priceMin, thumbnail, colors, number, tank}) => {
                         return(
                             <CarCard
                                 key={id}
                                 id={id}
+                                colors={colors}
+                                number={number}
+                                tank={tank}
                                 name={name}
                                 priceMax={priceMax}
                                 priceMin={priceMin}

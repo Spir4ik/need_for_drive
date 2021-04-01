@@ -1,0 +1,33 @@
+.container {
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  .select__date {
+    margin-bottom: 32px;
+    input {
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 16px;
+      margin-left: 10px;
+      margin-bottom: 13px;
+      width: 100%;
+      border-width: 0;
+      border-bottom: 1px solid black;
+      text-indent: 8px;
+      outline: none;
+    }
+  }
+  .select__rate {
+    margin-bottom: 32px;
+    .form_radio {
+      padding-top: 16px;
+      input {
+        padding-top: 0;
+      }
+    }
+  }
+  .select__colors {
+    margin-bottom: 32px;
+  }
+}
