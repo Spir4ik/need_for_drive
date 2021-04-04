@@ -5,6 +5,9 @@
     width: 200px;
     margin-top: 0;
     margin-right: 55px;
+    @media (max-width: 767px) {
+      margin-right: 16px;
+    }
     ul {
       margin: 20px 0 0 10px;
       width: 173px;

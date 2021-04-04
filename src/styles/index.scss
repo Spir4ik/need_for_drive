@@ -34,6 +34,9 @@ body {
         .params__map {
           max-width: 736px;
           margin-top: 45px;
+          @media (max-width: 767px) {
+            margin-right: 16px;
+          }
           img {
             margin-top: 16px;
             width: 100%;
@@ -42,6 +45,12 @@ body {
             font-size: 14px;
             line-height: 16px;
           }
+        }
+      }
+      .content__info {
+        width: 100%;
+        @media (max-width: 1200px) {
+          display: none;
         }
       }
     }

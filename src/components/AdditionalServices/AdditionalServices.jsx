@@ -8,7 +8,7 @@ export default function () {
         <div className={styleAdditionalServices.container}>
             <div className={styleAdditionalServices.select__colors}>
                 <span>Цвет</span>
-                <RadioComponent />
+                {/*<RadioComponent />*/}
             </div>
             <div className={styleAdditionalServices.select__date}>
                 <span>Дата аренды</span>

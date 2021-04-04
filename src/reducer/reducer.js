@@ -4,6 +4,8 @@ const initialStateOrder = {
     cityId: {},
     pointId: {},
     carId: {},
+    color: 'any',
+    price: 0
 };
 
 const initialStateCars = {
@@ -30,6 +32,11 @@ const initialStatePoint = {
     error: null
 };
 
+const initialStateDaysAndHours = {
+    days: null,
+    hours: null
+}
+
 function storeReducer(state = initialStateOrder, action) {
     switch (action.type) {
         case 'ADD_CITY_IN_STORE':
@@ -47,9 +54,31 @@ function storeReducer(state = initialStateOrder, action) {
                 ...state,
                 carId: action.payload.carId
             };
+        case 'ADD_COLOR_IN_STORE':
+            return {
+                ...state,
+                color: action.payload.color
+            };
+        case 'ADD_PRICE_IN_STORE':
+            return {
+                ...state,
+                price: action.payload.price
+            };
         default:
             return state;
     }
+}
+
+function daysAndHoursReducer(state = initialStateDaysAndHours, action) {
+    // return action.type === 'ADD_DAYS_AND_HOURS' ? action.payload.categoryId : state
+    if (action.type === 'ADD_DAYS_AND_HOURS') {
+        return {
+            ...state,
+            days: action.payload.days,
+            hours: action.payload.hours,
+        }
+    }
+    return state;
 }
 
 function categoryIdReducer(state = '', action) {
@@ -164,6 +193,7 @@ export default combineReducers(
         storeReducer,
         categoryReducer,
         carsReducer,
-        categoryIdReducer
+        categoryIdReducer,
+        daysAndHoursReducer
     }
 )

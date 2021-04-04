@@ -1,15 +1,14 @@
 .content__info-about-order {
   border-left: 1px solid #EEEEEE;
-  height: 80.6vh;
-  width: 100%;
+  height: 80.8vh;
   padding: 0 63px 0 32px;
   @media (max-width: 1200px) {
-    display: none;
+    padding: 0 4px 0 2px;
   }
   .containers {
     display: flex;
     flex-direction: column;
-    margin-top: 16px;
+    padding-top: 16px;
     .info-about-order__header {
       display: flex;
       justify-content: flex-end;

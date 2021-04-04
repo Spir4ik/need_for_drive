@@ -22,6 +22,12 @@ export default function () {
                         <button>Дополнительно</button>
                     </Link>
                 );
+            case "/additional":
+                return(
+                    <Link to="/resultstage">
+                        <button>Итого</button>
+                    </Link>
+                )
             default:
                 return null;
         }
@@ -58,15 +64,16 @@ export default function () {
                         renderInfoBody('Пункт выдачи', 'Выберите го.', 'Выберите п-т')
                     }
                     {store.carId.hasOwnProperty('id') ? renderInfoBody('Модель', false, store.carId.name) : null}
-
+                    {renderInfoBody('Длительность аренды', false, `${''} 2ч`)}
 
                 </div>
                 <div className="info-about-order__header__footer">
-                    {store.carId.hasOwnProperty('id') ?
+                    {store.carId.hasOwnProperty('id') && path === "/modelspage" ?
                         <span><strong>Цена</strong>: от {store.carId.priceMin} до {store.carId.priceMax} ₽</span>
                         :
                         null
                     }
+                    {path === "/additional" && <span><strong>Цена</strong>: {store.price} ₽</span>}
                     {renderBtn()}
                 </div>
             </div>

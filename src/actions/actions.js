@@ -21,10 +21,32 @@ export const addCarInStore = carId => ({
     }
 });
 
+export const addColorInStore = color => ({
+    type: 'ADD_COLOR_IN_STORE',
+    payload: {
+        color
+    }
+});
+
+export const addPriceInStore = price => ({
+    type: 'ADD_PRICE_IN_STORE',
+    payload: {
+        price
+    }
+});
+
 export const addCategoryId = categoryId => ({
     type: 'ADD_CATEGORY_ID',
     payload: {
         categoryId
+    }
+});
+
+export const addDaysAndHours = (days, hours) => ({
+    type: 'ADD_DAYS_AND_HOURS',
+    payload: {
+        days,
+        hours
     }
 })
 
