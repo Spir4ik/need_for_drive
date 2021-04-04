@@ -5,7 +5,9 @@ const initialStateOrder = {
     pointId: {},
     carId: {},
     color: 'any',
-    price: 0
+    price: 0,
+    dateFrom: 0,
+    dateTo: 0
 };
 
 const initialStateCars = {
@@ -33,8 +35,8 @@ const initialStatePoint = {
 };
 
 const initialStateDaysAndHours = {
-    days: null,
-    hours: null
+    days: 0,
+    hours: 0
 }
 
 function storeReducer(state = initialStateOrder, action) {
@@ -64,13 +66,22 @@ function storeReducer(state = initialStateOrder, action) {
                 ...state,
                 price: action.payload.price
             };
+        case 'ADD_DATE_FROM_IN_STORE':
+            return {
+                ...state,
+                dateFrom: action.payload.dateFrom
+            };
+        case 'ADD_DATE_TO_IN_STORE':
+            return {
+                ...state,
+                dateTo: action.payload.dateTo
+            };
         default:
             return state;
     }
 }
 
 function daysAndHoursReducer(state = initialStateDaysAndHours, action) {
-    // return action.type === 'ADD_DAYS_AND_HOURS' ? action.payload.categoryId : state
     if (action.type === 'ADD_DAYS_AND_HOURS') {
         return {
             ...state,

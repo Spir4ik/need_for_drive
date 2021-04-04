@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import moment from "moment";
 import ru from 'date-fns/locale/ru'
 import styleDate from './Date.module.scss'
-import {addDaysAndHours} from '../../actions/actions'
+import {addDaysAndHours, addPriceInStore, addDateFromInStore, addDateToInStore} from '../../actions/actions'
 
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 moment.locale('ru');
@@ -12,10 +12,10 @@ moment.locale('ru');
 export default function () {
     registerLocale('ru', ru);
     const dispatch = useDispatch();
-    const datetest = useSelector(state => state.daysAndHoursReducer)
+    const currentDaysAndHours = useSelector(state => state.daysAndHoursReducer);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    console.log(datetest);
+
     useEffect(() => {
         if (endDate) {
             const now = moment(startDate);
@@ -28,6 +28,10 @@ export default function () {
             }
         }
     }, [endDate]);
+
+    useEffect(() => {
+        dispatch(addPriceInStore((currentDaysAndHours.days * 1999) + (currentDaysAndHours.hours * 60 * 7)))
+    }, [currentDaysAndHours]);
 
     const filterPassedTime = time => {
         const currentDate = new Date();
@@ -42,10 +46,14 @@ export default function () {
                 <label>С</label>
                 <DatePicker
                     selected={startDate}
-                    onChange={date => setStartDate(date)}
+                    onChange={date => {
+                        setStartDate(date);
+                        dispatch(addDateFromInStore(Date.parse(date)))
+                    }}
                     selectsStart
                     startDate={startDate}
                     endDate={endDate}
+                    minDate={new Date()}
                     showTimeSelect
                     filterTime={filterPassedTime}
                     timeFormat="p"
@@ -59,7 +67,10 @@ export default function () {
                 <label>По</label>
                 <DatePicker
                     selected={endDate}
-                    onChange={date => setEndDate(date)}
+                    onChange={date => {
+                        setEndDate(date);
+                        dispatch(addDateToInStore(Date.parse(date)))
+                    }}
                     selectsEnd
                     startDate={startDate}
                     endDate={endDate}

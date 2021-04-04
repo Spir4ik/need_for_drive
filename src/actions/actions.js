@@ -35,6 +35,20 @@ export const addPriceInStore = price => ({
     }
 });
 
+export const addDateFromInStore = dateFrom => ({
+    type: 'ADD_DATE_FROM_IN_STORE',
+    payload: {
+        dateFrom
+    }
+});
+
+export const addDateToInStore = dateTo => ({
+    type: 'ADD_DATE_TO_IN_STORE',
+    payload: {
+        dateTo
+    }
+});
+
 export const addCategoryId = categoryId => ({
     type: 'ADD_CATEGORY_ID',
     payload: {
