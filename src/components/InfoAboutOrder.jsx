@@ -4,14 +4,21 @@ import '../styles/styleInfoAboutOrder.scss'
 import {Link} from "react-router-dom";
 import PropTypes from 'prop-types'
 import {useRouteMatch} from "react-router-dom";
-import {showModalWindow} from '../actions/actions'
+import {showModalWindow, deleteCurrentOrder} from '../actions/actions'
 
-export default function InfoAboutOrder({city, point, modelCar, color, rate, fullTank, babyArmchir, rightWheel, price, leaseDuration}) {
+export default function InfoAboutOrder({orderId, city, point, modelCar, color, rate, fullTank, babyArmchir, rightWheel, price, leaseDuration}) {
     const store = useSelector(state => state.storeReducer);
     const currentDays = useSelector(state => state.daysAndHoursReducer.days);
     const currentHours = useSelector(state => state.daysAndHoursReducer.hours);
+    const token = useSelector(state => state.loginReducer.accessToken);
     const {path} = useRouteMatch();
     const dispatch = useDispatch();
+
+    const deleteOrderFunc = () => {
+        localStorage.removeItem('id');
+        dispatch(deleteCurrentOrder(token, `${localStorage.getItem('id')}`));
+        return window.location.reload();
+    };
 
     const renderBtn = () => {
         switch (path) {
@@ -38,7 +45,9 @@ export default function InfoAboutOrder({city, point, modelCar, color, rate, full
                     <button onClick={() => dispatch(showModalWindow())}>Заказать</button>
                 );
             default:
-                return <button className="btn__success-page">Отменить</button>;
+                return(
+                    <button className="btn__success-page" onClick={() => deleteOrderFunc()}>Отменить</button>
+                )
         }
     };
 
@@ -101,7 +110,7 @@ export default function InfoAboutOrder({city, point, modelCar, color, rate, full
                     <p>Ваш заказ:</p>
                 </div>
                 <div className="info-about-order__header__body">
-                    {city ? renderReadyOrder() : renderInfoInProcess()}
+                    {orderId ? renderReadyOrder() : renderInfoInProcess()}
                 </div>
                 <div className="info-about-order__header__footer">
                     {store.carId.hasOwnProperty('id') && path === "/modelspage" ?
@@ -129,5 +138,6 @@ InfoAboutOrder.propTypes = {
     babyArmchir: PropTypes.bool,
     rightWheel: PropTypes.bool,
     price: PropTypes.number,
-    leaseDuration: PropTypes.func
+    leaseDuration: PropTypes.object,
+    orderId: PropTypes.string
 };

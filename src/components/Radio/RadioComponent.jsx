@@ -44,7 +44,7 @@ export default function RadioComponent() {
                 })}
             </div>
                 :
-            <div className="form_radio">
+            <div className="form_radio color-page">
                 <input
                     id="any"
                     type="radio"

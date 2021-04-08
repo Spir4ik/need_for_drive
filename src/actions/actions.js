@@ -87,6 +87,39 @@ export const addDaysAndHours = (days, hours) => ({
     }
 });
 
+export const deleteCurrentOrder = (access_token, orderId) => {
+    return dispatch => {
+        dispatch(deleteCurrentOrderStarted());
+
+        api.deleteCurrentOrder(
+            response => {
+                dispatch(deleteCurrentOrderSuccess(response.data));
+            },
+            error => dispatch(deleteCurrentOrderFailed(error.message)),
+            access_token,
+            orderId
+        )
+    }
+};
+
+const deleteCurrentOrderSuccess = successData => ({
+    type: 'DELETE_CURRENT_ORDER_SUCCESS',
+    payload: {
+        successData
+    }
+});
+
+const deleteCurrentOrderStarted = () => ({
+    type: 'DELETE_CURRENT_ORDER_STARTED',
+});
+
+const deleteCurrentOrderFailed = error => ({
+    type: 'DELETE_CURRENT_ORDER_FAILURE',
+    payload: {
+        error
+    }
+});
+
 export const currentOrder = (access_token, orderId) => {
     return dispatch => {
         dispatch(currentOrderStarted());
@@ -151,7 +184,7 @@ const loginFailed = error => ({
     }
 });
 
-export const postData = () => {
+export const postData = (store) => {
     return dispatch => {
         dispatch(postStarted());
 
@@ -160,7 +193,8 @@ export const postData = () => {
                 localStorage.setItem('id', response.data.id);
                 dispatch(postSuccess(response.data.id));
             },
-            error => dispatch(postFailed(error.message))
+            error => dispatch(postFailed(error.message)),
+            store
         )
     }
 };

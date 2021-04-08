@@ -61,6 +61,12 @@ const initialStateCurrentOrder = {
     loading: false,
     currentOrder: [],
     error: null
+};
+
+const initialStateDeleteCurrentOrder = {
+    loading: false,
+    successData: [],
+    error: null
 }
 
 const initialStateDaysAndHours = {
@@ -150,6 +156,32 @@ function daysAndHoursReducer(state = initialStateDaysAndHours, action) {
 
 function categoryIdReducer(state = '', action) {
     return action.type === 'ADD_CATEGORY_ID' ? action.payload.categoryId : state
+}
+
+function deleteCurrentOrderReducer(state = initialStateDeleteCurrentOrder, action) {
+    switch (action.type) {
+        case 'DELETE_CURRENT_ORDER_STARTED':
+            return {
+                ...state,
+                loading: true,
+                successData: []
+            };
+        case 'DELETE_CURRENT_ORDER_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                successData: action.payload.successData
+            };
+        case 'DELETE_CURRENT_ORDER_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            };
+        default:
+            return state;
+    }
 }
 
 function currentOrderReducer(state = initialStateCurrentOrder, action) {
@@ -370,6 +402,7 @@ export default combineReducers(
         modalWindowReducer,
         currentOrderIdReducer,
         loginReducer,
-        currentOrderReducer
+        currentOrderReducer,
+        deleteCurrentOrderReducer
     }
 )

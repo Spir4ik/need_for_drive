@@ -28,7 +28,7 @@ export default function Autocomplete({textLabel, arrayUl, id, currentText}) {
                         <li key={id} onClick={() => {
                             setText(address);
                             setShowUl(false);
-                            dispatch(addPointInStore({address, id}))
+                            dispatch(addPointInStore({address, id, name}))
                         }}>{address}</li>
                         :
                         null)

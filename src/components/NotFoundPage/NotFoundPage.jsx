@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import styleNotFoundPage from './NotFoundPage.module.scss'
+import {Link} from "react-router-dom";
 import Spinner from "../Spinner/Spinner.jsx";
 import HamburgerMenu from "../HamburgerMenu.jsx";
 
@@ -25,7 +26,9 @@ export default function () {
                     </div>
                     <div className={styleNotFoundPage.block__footer}>
                         <p>Вы попали на несуществующую страницу.</p>
-                        <button>На главную</button>
+                        <Link to='/'>
+                            <button>На главную</button>
+                        </Link>
                     </div>
                 </>}
             </div>

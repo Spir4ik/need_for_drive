@@ -7,7 +7,7 @@ import Navigation from "../components/Navigation.jsx";
 import Spinner from "../components/Spinner/Spinner.jsx";
 import UserOrder from "../components/UserOrder/UserOrder.jsx";
 import InfoAboutOrder from "../components/InfoAboutOrder.jsx";
-import {login, currentOrder, addDaysAndHours} from '../actions/actions'
+import {login, currentOrder} from '../actions/actions'
 
 
 export default function () {
@@ -64,6 +64,7 @@ export default function () {
                                 babyArmchir={order.isNeedChildChair}
                                 rightWheel={order.isRightWheel}
                                 price={order.price}
+                                orderId={order.id}
                             />
                         </div>
                     </>}

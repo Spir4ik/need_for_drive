@@ -5,6 +5,9 @@
   height: 60vh;
   overflow-y: auto;
   margin-top: 48px;
+  @media (max-width: 767px) {
+    max-width: 322px;
+  }
   .cars__card {
     display:flex;
     flex-direction:column;

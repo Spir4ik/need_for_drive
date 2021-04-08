@@ -7,6 +7,7 @@ import {showModalWindow, postData} from "../../actions/actions";
 export default function () {
     const dispatch = useDispatch();
     const orderId = useSelector(state => state.currentOrderIdReducer);
+    const store = useSelector(state => state.storeReducer);
 
     useEffect(() => {
         const initialPage = window.location;
@@ -24,7 +25,7 @@ export default function () {
                     </div>
                     <div className={styleWindow.window__buttons}>
                         <button onClick={() =>
-                            dispatch(postData())
+                            dispatch(postData(store))
                         }>Подтвердить</button>
                         <button onClick={() => dispatch(showModalWindow())}>Вернуться</button>
                     </div>

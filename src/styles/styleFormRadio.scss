@@ -1,5 +1,8 @@
 .form_radio {
   padding-top: 32px;
+  &.color-page {
+    padding-top: 16px;
+  }
   label {
     display: inline-block;
     cursor: pointer;

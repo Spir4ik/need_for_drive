@@ -61,6 +61,7 @@
     "moment": "^2.29.1",
     "normalize.css": "^8.0.1",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-datepicker": "^3.6.0",
     "react-dom": "^16.14.0",

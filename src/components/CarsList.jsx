@@ -19,7 +19,7 @@ export default function () {
             <RadioComponent />
             <div className="cars__list">
                 {cars.length === 0 ? <Spinner />
-                : cars.map(({id, name, priceMax, priceMin, thumbnail, colors, number, tank}) => {
+                : cars.map(({id, name, priceMax, priceMin, thumbnail, colors, number, tank, categoryId, description, createdAt, updatedAt}) => {
                         return(
                             <CarCard
                                 key={id}
@@ -31,6 +31,10 @@ export default function () {
                                 priceMax={priceMax}
                                 priceMin={priceMin}
                                 thumbnail={thumbnail}
+                                categoryId={categoryId}
+                                description={description}
+                                createdAt={createdAt}
+                                updatedAt={updatedAt}
                             />
                         )
                     })

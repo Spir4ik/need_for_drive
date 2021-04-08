@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import {useDispatch} from "react-redux";
 import {addCarInStore} from "../actions/actions";
 
-export default function CarCard({id, name, priceMax, priceMin, thumbnail, colors, number, tank}) {
+export default function CarCard({id, name, priceMax, priceMin, thumbnail, colors, number, tank, categoryId, description, createdAt, updatedAt}) {
     const dispatch = useDispatch();
 
     return(
-        <div className="cars__card" onClick={() => dispatch(addCarInStore({id, name, priceMax, priceMin, thumbnail, colors, number, tank}))}>
+        <div className="cars__card" onClick={() => dispatch(addCarInStore({id, name, priceMax, priceMin, thumbnail, colors, number, tank, categoryId, description, createdAt, updatedAt}))}>
             <div className="card__header">
                 <div className="header__name">
                     <span>{name}</span>
@@ -37,5 +37,7 @@ CarCard.propTypes = {
     thumbnail: PropTypes.object,
     colors: PropTypes.array,
     number: PropTypes.string,
-    tank: PropTypes.number
+    tank: PropTypes.number,
+    categoryId: PropTypes.object,
+    description: PropTypes.string
 };
