@@ -1,5 +1,9 @@
 import api from '../api/api'
 
+export const showModalWindow = () => ({
+    type: 'SHOW_MODAL_WINDOW'
+});
+
 export const addCityInStore = cityId => ({
     type: 'ADD_CITY_IN_STORE',
     payload: {
@@ -49,6 +53,25 @@ export const addDateToInStore = dateTo => ({
     }
 });
 
+export const addRateInStore = rateId => ({
+    type: 'ADD_RATE_IN_STORE',
+    payload: {
+        rateId
+    }
+});
+
+export const addTankInStore = () => ({
+    type: 'ADD_TANK_IN_STORE'
+});
+
+export const addCharInStore = () => ({
+    type: 'ADD_CHAR_IN_STORE'
+});
+
+export const addRightHandDrive = () => ({
+    type: 'ADD_RIGHT_HAND_DRIVE'
+})
+
 export const addCategoryId = categoryId => ({
     type: 'ADD_CATEGORY_ID',
     payload: {
@@ -62,7 +85,135 @@ export const addDaysAndHours = (days, hours) => ({
         days,
         hours
     }
-})
+});
+
+export const currentOrder = (access_token, orderId) => {
+    return dispatch => {
+        dispatch(currentOrderStarted());
+
+        api.fetchCurrentOrder(
+            response => {
+                dispatch(currentOrderSuccess(response.data));
+            },
+            error => dispatch(currentOrderFailed(error.message)),
+            access_token,
+            orderId
+        )
+    }
+};
+
+const currentOrderSuccess = currentOrder => ({
+    type: 'CURRENT_ORDER_SUCCESS',
+    payload: {
+        currentOrder
+    }
+});
+
+const currentOrderStarted = () => ({
+    type: 'CURRENT_ORDER_STARTED',
+});
+
+const currentOrderFailed = error => ({
+    type: 'CURRENT_ORDER_FAILURE',
+    payload: {
+        error
+    }
+});
+
+export const login = () => {
+    return dispatch => {
+        dispatch(loginStarted());
+
+        api.fetchLogin(
+            response => {
+                dispatch(loginSuccess(response.access_token));
+            },
+            error => dispatch(loginFailed(error.message))
+        )
+    }
+};
+
+const loginSuccess = loginData => ({
+    type: 'LOGIN_SUCCESS',
+    payload: {
+        loginData
+    }
+});
+
+const loginStarted = () => ({
+    type: 'LOGIN_STARTED',
+});
+
+const loginFailed = error => ({
+    type: 'LOGIN_FAILURE',
+    payload: {
+        error
+    }
+});
+
+export const postData = () => {
+    return dispatch => {
+        dispatch(postStarted());
+
+        api.fetchPost(
+            response => {
+                localStorage.setItem('id', response.data.id);
+                dispatch(postSuccess(response.data.id));
+            },
+            error => dispatch(postFailed(error.message))
+        )
+    }
+};
+
+const postSuccess = currentOrderId => ({
+    type: 'POST_SUCCESS',
+    payload: {
+        currentOrderId
+    }
+});
+
+const postStarted = () => ({
+    type: 'POST_STARTED',
+});
+
+const postFailed = error => ({
+    type: 'POST_FAILURE',
+    payload: {
+        error
+    }
+});
+
+export const addRate = () => {
+    return dispatch => {
+        dispatch(getRateStarted());
+
+        api.fetchData(
+            category => {
+                dispatch(getRateSuccess(category.data))
+            },
+            error => dispatch(getRateFailed(error.message)),
+            'rate'
+        )
+    }
+}
+
+const getRateSuccess = rate => ({
+    type: 'ADD_RATE_SUCCESS',
+    payload: {
+        rate
+    }
+});
+
+const getRateStarted = () => ({
+    type: 'ADD_RATE_STARTED',
+});
+
+const getRateFailed = error => ({
+    type: 'ADD_RATE_FAILURE',
+    payload: {
+        error
+    }
+});
 
 export const addCar = (categoryId) => {
     return dispatch => {

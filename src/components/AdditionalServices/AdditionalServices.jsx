@@ -1,6 +1,8 @@
 import React from 'react'
 import styleAdditionalServices from './additionalServices.module.scss'
 import RadioComponent from "../Radio/RadioComponent.jsx";
+import Checkbox from "../AdditionalCheckbox/Checkbox.jsx";
+import Rate from "../RadioRate/Rate.jsx";
 import Date from "../DateComponent/Date.jsx";
 
 export default function () {
@@ -16,28 +18,11 @@ export default function () {
             </div>
             <div className={styleAdditionalServices.select__rate}>
                 <span>Тариф</span>
-                <div className={styleAdditionalServices.form_radio}>
-                    <input
-                        id="radio-2"
-                        type="radio"
-                        name="test"
-                        value=""
-                    />
-                    <label htmlFor="radio-2">Поминутно, 7₽/мин</label>
-                </div>
-                <div className={styleAdditionalServices.form_radio}>
-                    <input
-                        id="radio-2"
-                        type="radio"
-                        name="test"
-                        value=""
-                        checked={ true }
-                    />
-                    <label htmlFor="radio-2">На сутки, 1999 ₽/сутки</label>
-                </div>
+                <Rate />
             </div>
             <div className="select__services">
-
+                <span>Доп. услуги</span>
+                <Checkbox />
             </div>
         </div>
     )

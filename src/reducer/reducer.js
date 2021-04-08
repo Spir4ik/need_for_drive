@@ -1,13 +1,18 @@
 import { combineReducers } from 'redux';
 
 const initialStateOrder = {
+    orderStatusId: {name: "new", id: "5e26a191099b810b946c5d89"},
     cityId: {},
     pointId: {},
     carId: {},
-    color: 'any',
+    color: '',
     price: 0,
     dateFrom: 0,
-    dateTo: 0
+    dateTo: 0,
+    rateId: {},
+    isFullTank: false,
+    isNeedChildChair: false,
+    isRightWheel: false
 };
 
 const initialStateCars = {
@@ -34,9 +39,37 @@ const initialStatePoint = {
     error: null
 };
 
+const initialStateRate = {
+    loading: false,
+    rate: [],
+    error: null
+};
+
+const initialStateOrderId = {
+    loading: false,
+    currentOrderId: '',
+    error: null
+};
+
+const initialStateLogin = {
+    loading: false,
+    accessToken: '',
+    error: null
+};
+
+const initialStateCurrentOrder = {
+    loading: false,
+    currentOrder: [],
+    error: null
+}
+
 const initialStateDaysAndHours = {
     days: 0,
     hours: 0
+};
+
+function modalWindowReducer(state = false, action) {
+    return action.type === 'SHOW_MODAL_WINDOW' ? !state : state;
 }
 
 function storeReducer(state = initialStateOrder, action) {
@@ -76,6 +109,29 @@ function storeReducer(state = initialStateOrder, action) {
                 ...state,
                 dateTo: action.payload.dateTo
             };
+        case 'ADD_RATE_IN_STORE':
+            return {
+                ...state,
+                rateId: action.payload.rateId
+            };
+        case 'ADD_TANK_IN_STORE':
+            return {
+                ...state,
+                isFullTank: !state.isFullTank,
+                price: !state.isFullTank ? state.price + 500 : state.price - 500
+            };
+        case 'ADD_CHAR_IN_STORE':
+            return {
+                ...state,
+                isNeedChildChair: !state.isNeedChildChair,
+                price: !state.isNeedChildChair ? state.price + 200 : state.price - 200
+            };
+        case 'ADD_RIGHT_HAND_DRIVE':
+            return {
+                ...state,
+                isRightWheel: !state.isRightWheel,
+                price: !state.isRightWheel ? state.price + 1600 : state.price - 1600
+            }
         default:
             return state;
     }
@@ -94,6 +150,110 @@ function daysAndHoursReducer(state = initialStateDaysAndHours, action) {
 
 function categoryIdReducer(state = '', action) {
     return action.type === 'ADD_CATEGORY_ID' ? action.payload.categoryId : state
+}
+
+function currentOrderReducer(state = initialStateCurrentOrder, action) {
+    switch (action.type) {
+        case 'CURRENT_ORDER_STARTED':
+            return {
+                ...state,
+                loading: true,
+                currentOrder: []
+            };
+        case 'CURRENT_ORDER_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                currentOrder: action.payload.currentOrder
+            };
+        case 'CURRENT_ORDER_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            };
+        default:
+            return state;
+    }
+}
+
+function loginReducer(state = initialStateLogin, action) {
+    switch (action.type) {
+        case 'LOGIN_STARTED':
+            return {
+                ...state,
+                loading: true,
+                accessToken: ''
+            };
+        case 'LOGIN_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                accessToken: action.payload.loginData
+            };
+        case 'LOGIN_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            };
+        default:
+            return state;
+    }
+}
+
+function currentOrderIdReducer(state = initialStateOrderId, action) {
+    switch (action.type) {
+        case 'POST_STARTED':
+            return {
+                ...state,
+                loading: true,
+                currentOrderId: ''
+            };
+        case 'POST_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                currentOrderId: action.payload.currentOrderId
+            };
+        case 'POST_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            };
+        default:
+            return state;
+    }
+}
+
+function rateReducer(state = initialStateRate, action) {
+    switch (action.type) {
+        case 'ADD_RATE_STARTED':
+            return {
+                ...state,
+                loading: true,
+                rate: []
+            };
+        case 'ADD_RATE_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                rate: action.payload.rate
+            };
+        case 'ADD_RATE_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            };
+        default:
+            return state;
+    }
 }
 
 function carsReducer(state = initialStateCars, action) {
@@ -205,6 +365,11 @@ export default combineReducers(
         categoryReducer,
         carsReducer,
         categoryIdReducer,
-        daysAndHoursReducer
+        daysAndHoursReducer,
+        rateReducer,
+        modalWindowReducer,
+        currentOrderIdReducer,
+        loginReducer,
+        currentOrderReducer
     }
 )

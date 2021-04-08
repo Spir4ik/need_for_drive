@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {useDispatch} from "react-redux";
-import noImage from '../assets/no-image.png'
 import {addCarInStore} from "../actions/actions";
 
 export default function CarCard({id, name, priceMax, priceMin, thumbnail, colors, number, tank}) {

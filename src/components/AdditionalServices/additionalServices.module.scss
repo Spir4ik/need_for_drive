@@ -2,6 +2,13 @@
   max-width: 250px;
   display: flex;
   flex-direction: column;
+  margin-top: 32px;
+  span {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+  }
   .select__date {
     margin-bottom: 32px;
     input {
@@ -20,12 +27,6 @@
   }
   .select__rate {
     margin-bottom: 32px;
-    .form_radio {
-      padding-top: 16px;
-      input {
-        padding-top: 0;
-      }
-    }
   }
   .select__colors {
     margin-bottom: 32px;

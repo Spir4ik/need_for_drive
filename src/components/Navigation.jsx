@@ -8,10 +8,16 @@ export default function () {
     return(
         <div className="breadcrumb">
             <ul>
-                <li className={path === '/carreservation' ? 'active' : 'nonactive'}>Местоположение<img src={iconVector} alt=""/></li>
-                <li className={path === '/modelspage' ? 'active' : path === '/carreservation' ? '' : 'nonactive'}>Модель<img src={iconVector} alt=""/></li>
-                <li className={path === '/additional' ? 'active' : path === '/modelspage' || path === '/carreservation' ? '' : 'nonactive'}>Дополнительно<img src={iconVector} alt=""/></li>
-                <li>Итого</li>
+                {path === `/${localStorage.getItem('id')}` ?
+                    <li className='nonactive'>Заказ номер {localStorage.getItem('id')}</li>
+                    :
+                    <>
+                        <li className={path === '/carreservation' ? 'active' : 'nonactive'}>Местоположение<img src={iconVector} alt=""/></li>
+                        <li className={path === '/modelspage' ? 'active' : path === '/carreservation' ? '' : 'nonactive'}>Модель<img src={iconVector} alt=""/></li>
+                        <li className={path === '/additional' ? 'active' : path === '/modelspage' || path === '/carreservation' ? '' : 'nonactive'}>Дополнительно<img src={iconVector} alt=""/></li>
+                        <li className={path === '/resultstage' ? 'active' : null}>Итого</li>
+                    </>
+                    }
             </ul>
         </div>
     )
