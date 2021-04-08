@@ -25,19 +25,27 @@ export default function InfoAboutOrder({orderId, city, point, modelCar, color, r
             case "/carreservation":
                 return(
                     <Link to="/modelspage">
-                        <button>Выбрать модель</button>
+                        <button
+                            disabled={!(store.cityId.hasOwnProperty('name') &&
+                                store.pointId.hasOwnProperty('address'))}>
+                            Выбрать модель
+                        </button>
                     </Link>
                 );
             case "/modelspage":
                 return(
                     <Link to="/additional">
-                        <button>Дополнительно</button>
+                        <button disabled={!(store.carId.hasOwnProperty('id'))}>
+                            Дополнительно
+                        </button>
                     </Link>
                 );
             case "/additional":
                 return(
                     <Link to="/resultstage">
-                        <button>Итого</button>
+                        <button disabled={!(store.color !== '' && currentDays && currentHours && store.rateId.hasOwnProperty('rateTypeId'))}>
+                            Итого
+                        </button>
                     </Link>
                 );
             case "/resultstage":

@@ -78,6 +78,9 @@
         text-align: center;
         color: white;
         border: none;
+        &:disabled {
+          background: #EEEEEE;
+        }
         &:hover {
           cursor: pointer;
         }

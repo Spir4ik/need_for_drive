@@ -4,6 +4,9 @@
   font-style: normal;
   font-size: 14px;
   line-height: 16px;
+  @media (max-width: 425px) {
+    flex-direction: column;
+  }
   .userOrder__info {
     flex: 1 0 25%;
     display: flex;

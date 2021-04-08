@@ -7,6 +7,7 @@ import Navigation from "../components/Navigation.jsx";
 import Spinner from "../components/Spinner/Spinner.jsx";
 import UserOrder from "../components/UserOrder/UserOrder.jsx";
 import InfoAboutOrder from "../components/InfoAboutOrder.jsx";
+import Adaptet from "../components/Adapted/Adaptet.jsx";
 import {login, currentOrder} from '../actions/actions'
 
 
@@ -17,7 +18,7 @@ export default function () {
         token === '' ? dispatch(login()) : dispatch(currentOrder(token, localStorage.getItem('id')))
         , [token]);
     const order = useSelector(state => state.currentOrderReducer.currentOrder[0]);
-    console.log(order);
+
     const convertingDate = (date) => {
         return moment(new Date(date).toISOString()).format('DD.MM.YYYY hh:mm ')
     };
@@ -42,6 +43,7 @@ export default function () {
                 <div className="content other-page">
                     {!order ? <Spinner /> : <>
                         <ContentHeader successCity={order.cityId.name}/>
+                        <Adaptet />
                         <Navigation />
                         <div className="content__main">
                             <div className="main__params">
@@ -53,19 +55,21 @@ export default function () {
                                     dateFrom={convertingDate(order.dateFrom)}
                                 />
                             </div>
-                            <InfoAboutOrder
-                                city={order.cityId.name}
-                                point={order.pointId.address}
-                                modelCar={order.carId.name}
-                                color={order.color}
-                                rate={order.rateId.rateTypeId.name}
-                                leaseDuration={dateDifference()}
-                                fullTank={order.isFullTank}
-                                babyArmchir={order.isNeedChildChair}
-                                rightWheel={order.isRightWheel}
-                                price={order.price}
-                                orderId={order.id}
-                            />
+                            <div className="content__info">
+                                <InfoAboutOrder
+                                    city={order.cityId.name}
+                                    point={order.pointId.address}
+                                    modelCar={order.carId.name}
+                                    color={order.color}
+                                    rate={order.rateId.rateTypeId.name}
+                                    leaseDuration={dateDifference()}
+                                    fullTank={order.isFullTank}
+                                    babyArmchir={order.isNeedChildChair}
+                                    rightWheel={order.isRightWheel}
+                                    price={order.price}
+                                    orderId={order.id}
+                                />
+                            </div>
                         </div>
                     </>}
                 </div>
