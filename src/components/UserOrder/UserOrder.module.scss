@@ -35,5 +35,11 @@
   }
   .userOrder__imageCar {
     flex: 1 0 25%;
+    img {
+      object-fit: cover;
+      margin-left: auto;
+      width: 256px;
+      height: 116px;
+    }
   }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {useDispatch} from "react-redux";
 import {addCarInStore} from "../actions/actions";
+import noImage from '../assets/no-image.png'
 
 export default function CarCard({id, name, priceMax, priceMin, thumbnail, colors, number, tank, categoryId, description, createdAt, updatedAt}) {
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export default function CarCard({id, name, priceMax, priceMin, thumbnail, colors
                      onError={(e) =>
                          {
                             e.target.onerror = null;
-                            e.target.src='../assets/no-image.png'
+                            e.target.src = noImage
                          }
                      } alt=""/>
             </div>

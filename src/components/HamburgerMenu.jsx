@@ -6,7 +6,7 @@ import '../styles/styleHamburger-menu.scss'
 
 export default function () {
     const [showMenuBack, setShowMenuBack] = useState(false);
-    const [showRusLanguage, setShowRusLanguage] = useState(false)
+    const [showRusLanguage, setShowRusLanguage] = useState(false);
 
     return(
         <div className="header">
@@ -20,7 +20,7 @@ export default function () {
             <div className="menu__language" onClick={() => setShowRusLanguage(!showRusLanguage)}>
                 {showRusLanguage ? <p>Рус</p> : <p>Eng</p>}
             </div>
-            {showMenuBack && <div className="menu__back">
+            {showMenuBack && <div className={window.location.hash !== '#/' ? "menu__back two" : "menu__back"}>
                 <div className="menu__list">
                     <ul>
                         <li>ПАРКОВКА</li>
@@ -42,7 +42,10 @@ export default function () {
                         </a>
                     </div>
                 </div>
-                <div className="menu__back__front-slider"></div>
+                <div className="menu__language front-slider" onClick={() => setShowRusLanguage(!showRusLanguage)}>
+                    {showRusLanguage ? <p>Рус</p> : <p>Eng</p>}
+                </div>
+                {window.location.hash === '#/' && <div className="menu__back__front-slider"></div>}
             </div>}
         </div>
     )

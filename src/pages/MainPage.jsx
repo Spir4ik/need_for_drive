@@ -1,18 +1,14 @@
 import React, {useEffect} from 'react'
-import iconCity from '../assets/icon-city.svg'
 import Slider from "../components/Slider.jsx";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
-import Forms from "../components/Forms.jsx";
 import {Link} from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch} from "react-redux";
 import {addCity} from "../actions/actions";
 
 export default function () {
-    const cityName = useSelector(state => state.cityReducer);
-    const store = useSelector(state => state.storeReducer);
     const dispatch = useDispatch();
     useEffect(() => dispatch(addCity()), []);
-    console.log(store);
+
     return(
         <div className="wrapper">
             <div className="container">
@@ -21,13 +17,6 @@ export default function () {
                     <div className="content__header">
                         <div className="header__logo">
                             Need for drive
-                        </div>
-                        <div className="header__city">
-                            <img src={iconCity} alt=""/>
-                            {store.cityId.hasOwnProperty('name') ?
-                                <p>{store.cityId.name}</p> :
-                                <Forms />
-                            }
                         </div>
                     </div>
                     <div className="content__hero-block">

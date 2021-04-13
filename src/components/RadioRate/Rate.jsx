@@ -6,6 +6,7 @@ import {addRate, addRateInStore} from '../../actions/actions'
 export default function () {
     const dispatch = useDispatch();
     const rate = useSelector(state => state.rateReducer.rate);
+    const rateId = useSelector(state => state.storeReducer.rateId);
     useEffect(() => dispatch(addRate()), []);
 
     return(
@@ -19,6 +20,7 @@ export default function () {
                             name="test"
                             value=""
                             onChange={() => dispatch(addRateInStore({rateTypeId, price, id}))}
+                            checked={rateId.hasOwnProperty('rateTypeId') ? (rateId.rateTypeId.name === rateTypeId.name) : false}
                         />
                         <label htmlFor={rateTypeId.name}>{rateTypeId.name}, {price}₽/{rateTypeId.unit}</label>
                     </div>

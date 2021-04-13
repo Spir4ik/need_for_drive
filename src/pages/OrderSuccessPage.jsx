@@ -20,7 +20,7 @@ export default function () {
     const order = useSelector(state => state.currentOrderReducer.currentOrder[0]);
 
     const convertingDate = (date) => {
-        return moment(new Date(date).toISOString()).format('DD.MM.YYYY hh:mm ')
+        return moment(new Date(date).toISOString()).format('DD.MM.YYYY HH:mm ')
     };
     const dateDifference = () => {
         if (order) {
@@ -53,6 +53,7 @@ export default function () {
                                     tankCar={order.carId.tank}
                                     fullTank={order.isFullTank}
                                     dateFrom={convertingDate(order.dateFrom)}
+                                    imageCar={order.carId.thumbnail}
                                 />
                             </div>
                             <div className="content__info">

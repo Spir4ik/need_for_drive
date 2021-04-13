@@ -22,8 +22,12 @@
     color: #0EC261;
     border-radius: 50%;
     position: fixed;
-    top: 90%;
+    bottom: 0;
+    margin-bottom: 18px;
     left: 6px;
+    @media (max-width: 767px) {
+      display: none;
+    }
     &:hover {
       border: 1px solid white;
       cursor: pointer;
@@ -123,7 +127,9 @@
     top: 0;
     height: 100vh;
     background-color: #151B1F;
-    z-index: 2;
+    &.two {
+      z-index: 2;
+    }
     ul {
       color: white;
       width: 200px;
@@ -181,6 +187,12 @@
       z-index: 5;
       @media (max-width: 1023px) {
         display: none;
+      }
+    }
+    .front-slider {
+      display: none;
+      @media (max-width: 767px) {
+        display: flex;
       }
     }
   }

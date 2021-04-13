@@ -43,7 +43,7 @@ export default function InfoAboutOrder({orderId, city, point, modelCar, color, r
             case "/additional":
                 return(
                     <Link to="/resultstage">
-                        <button disabled={!(store.color !== '' && currentDays && currentHours && store.rateId.hasOwnProperty('rateTypeId'))}>
+                        <button disabled={!(store.color !== '' && (currentDays || currentHours) && store.rateId.hasOwnProperty('rateTypeId'))}>
                             Итого
                         </button>
                     </Link>
@@ -55,7 +55,7 @@ export default function InfoAboutOrder({orderId, city, point, modelCar, color, r
             default:
                 return(
                     <button className="btn__success-page" onClick={() => deleteOrderFunc()}>Отменить</button>
-                )
+                );
         }
     };
 
@@ -87,7 +87,7 @@ export default function InfoAboutOrder({orderId, city, point, modelCar, color, r
                 }
                 {store.carId.hasOwnProperty('id') ? renderInfoBody('Модель', false, store.carId.name) : null}
                 {store.color !== '' ? renderInfoBody('Цвет', false, store.color === 'any' ? 'Любой' : store.color) : null}
-                {currentDays && currentHours ? renderInfoBody('Длительность аренды', false, `${currentDays}д ${currentHours}ч`) : null}
+                {currentDays || currentHours ? renderInfoBody('Длительность аренды', false, `${currentDays}д ${currentHours}ч`) : null}
                 {store.rateId.hasOwnProperty('rateTypeId') ? renderInfoBody('Тариф', false, store.rateId.rateTypeId.name) : null}
                 {store.isFullTank ? renderInfoBody('Полный бак', false, 'Да') : null}
                 {store.isNeedChildChair ? renderInfoBody('Детское кресло', false, 'Да') : null}
