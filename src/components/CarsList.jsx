@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import CarCard from "./CarCard.jsx";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Spinner from "./Spinner/Spinner.jsx";
 import RadioComponent from "./Radio/RadioComponent.jsx";
 import '../styles/styleCarsList.scss'
@@ -11,7 +11,7 @@ export default function () {
     const cars = useSelector(state => state.carsReducer.car);
     const currentCategoryId = useSelector(state => state.categoryIdReducer);
     useEffect(() => {
-        dispatch(addCar(currentCategoryId))
+        dispatch(addCar(currentCategoryId));
     }, [currentCategoryId]);
 
     return(
@@ -20,22 +20,11 @@ export default function () {
                 <div className="testest">
                     <div className="cars__list">
                         {cars.length === 0 ? <Spinner />
-                            : cars.map(({id, name, priceMax, priceMin, thumbnail, colors, number, tank, categoryId, description, createdAt, updatedAt}) => {
+                            : cars.map(itemCar => {
                                 return(
                                     <CarCard
-                                        key={id}
-                                        id={id}
-                                        colors={colors}
-                                        number={number}
-                                        tank={tank}
-                                        name={name}
-                                        priceMax={priceMax}
-                                        priceMin={priceMin}
-                                        thumbnail={thumbnail}
-                                        categoryId={categoryId}
-                                        description={description}
-                                        createdAt={createdAt}
-                                        updatedAt={updatedAt}
+                                        key={itemCar.id}
+                                        itemCar={itemCar}
                                     />
                                 )
                             })

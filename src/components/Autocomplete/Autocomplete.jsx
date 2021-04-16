@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import classes from './Autocomplete.module.scss'
 import PropTypes from 'prop-types'
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -7,7 +7,6 @@ import {addCityInStore, addPointInStore} from "../../actions/actions";
 import iconClear from "../../assets/icon-clear.svg";
 
 export default function Autocomplete({currentArray, id, currrentlabel, currentText}) {
-    const [text, setText] = useState('');
     const {
         getRootProps,
         getInputLabelProps,
@@ -32,7 +31,10 @@ export default function Autocomplete({currentArray, id, currrentlabel, currentTe
         }
         return (
             <li {...getOptionProps({ params, index })}>
-                <span onClick={() => dispatch(addCityInStore(params))}>{params.name}</span>
+                <span onClick={() => {
+                    dispatch(addPointInStore({}));
+                    return dispatch(addCityInStore(params));
+                }}>{params.name}</span>
             </li>
         )
     };
@@ -62,5 +64,5 @@ Autocomplete.propTypes = {
     id: PropTypes.string.isRequired,
     currentArray: PropTypes.array.isRequired,
     currrentlabel: PropTypes.string.isRequired,
-    currentText: PropTypes.string.isRequired
+    currentText: PropTypes.string.isRequired,
 };

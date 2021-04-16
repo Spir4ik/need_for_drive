@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import moment from "moment";
 import ru from 'date-fns/locale/ru'
 import styleDate from './Date.module.scss'
-import {addDaysAndHours, addPriceInStore, addDateFromInStore, addDateToInStore} from '../../actions/actions'
+import {addDaysAndHours, addPriceInStore, addDateFromInStore, addDateToInStore} from '../../actions/actions';
 
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 
@@ -19,11 +19,9 @@ export default function () {
     const orderRate = useSelector(state => state.storeReducer.rateId);
     const currentDaysAndHours = useSelector(state => state.daysAndHoursReducer);
 
-    useEffect(() => dispatch(addDateFromInStore(Date.parse(new Date()))), []);
-
     useEffect(() => {
         if (endDate) {
-            const now = moment(startDate);
+            const now = moment(currentDate);
             const end = moment(endDate);
             const duration = moment.duration(end.diff(now));
             const hours = duration.asHours();
@@ -64,23 +62,31 @@ export default function () {
 
         return startDate.getTime() < selectedDate.getTime();
     };
-    const testFunc = (param) => {
+
+    const handleChangeDateFrom = (date) => {
+        dispatch(addDateToInStore(0));
+        return dispatch(addDateFromInStore(Date.parse(date)));
+    };
+
+    const handleChangeDateTo = (date) => {
         const hours = new Date(currentDate).getHours();
         const min = new Date(currentDate).getMinutes();
-        const year = new Date(param).getFullYear();
-        const month = new Date(param).getMonth();
-        const day = new Date(param).getDate();
+        const year = new Date(date).getFullYear();
+        const month = new Date(date).getMonth();
+        const day = new Date(date).getDate();
+        const currentHours = new Date(date).getHours() ? new Date(date).getHours() : hours;
+        const currentMinute = new Date(date).getMinutes() ? new Date(date).getMinutes() : min;
 
-        return moment.utc([year, month, day, hours, min, 0, 0]).format()
-    }
-    console.log(moment.utc(currentDate).format());
+        return dispatch(addDateToInStore(moment([year, month, day, currentHours, currentMinute, 0, 0]).valueOf()));
+    };
+
     return (
         <div className={styleDate.date}>
             <div className={styleDate.date__from}>
                 <label>С</label>
                 <DatePicker
                     selected={new Date(currentDate)}
-                    onChange={date => console.log(Date.parse(date))}
+                    onChange={date => handleChangeDateFrom(date)}
                     selectsStart
                     startDate={startDate}
                     endDate={endDate}
@@ -98,12 +104,12 @@ export default function () {
             <div className={styleDate.date__to}>
                 <label>По</label>
                 <DatePicker
-                    selected={endDate}
-                    onChange={date => console.log(testFunc(date))}
+                    selected={endDate ? new Date(endDate) : 0}
+                    onChange={date => handleChangeDateTo(date)}
                     selectsEnd
-                    startDate={startDate}
+                    startDate={new Date(currentDate)}
                     endDate={endDate}
-                    minDate={startDate}
+                    minDate={new Date(currentDate)}
                     showTimeSelect
                     filterTime={filterDateToTime}
                     disabledKeyboardNavigation
