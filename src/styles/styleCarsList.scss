@@ -1,6 +1,6 @@
 .testest {
-  height: 66vh;
-  overflow-y: auto;
+  height: calc(100vh - 224px);
+  overflow: auto;
   margin-top: 48px;
   .cars__list {
     max-width: 800px;

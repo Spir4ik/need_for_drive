@@ -19,6 +19,8 @@ export default function () {
     const orderRate = useSelector(state => state.storeReducer.rateId);
     const currentDaysAndHours = useSelector(state => state.daysAndHoursReducer);
 
+    useEffect(() => dispatch(addDateFromInStore(Date.parse(new Date()))), []);
+
     useEffect(() => {
         if (endDate) {
             const now = moment(startDate);
@@ -62,13 +64,22 @@ export default function () {
 
         return startDate.getTime() < selectedDate.getTime();
     };
+    const testFunc = (param) => {
+        const hours = new Date(currentDate).getHours();
+        const min = new Date(currentDate).getMinutes();
+        const year = new Date(param).getFullYear();
+        const month = new Date(param).getMonth();
+        const day = new Date(param).getDate();
 
+        return moment.utc([year, month, day, hours, min, 0, 0]).format()
+    }
+    console.log(moment.utc(currentDate).format());
     return (
         <div className={styleDate.date}>
             <div className={styleDate.date__from}>
                 <label>С</label>
                 <DatePicker
-                    selected={new Date()}
+                    selected={new Date(currentDate)}
                     onChange={date => console.log(Date.parse(date))}
                     selectsStart
                     startDate={startDate}
@@ -88,7 +99,7 @@ export default function () {
                 <label>По</label>
                 <DatePicker
                     selected={endDate}
-                    onChange={date => console.log(date)}
+                    onChange={date => console.log(testFunc(date))}
                     selectsEnd
                     startDate={startDate}
                     endDate={endDate}

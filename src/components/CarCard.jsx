@@ -18,7 +18,7 @@ export default function CarCard({id, name, priceMax, priceMin, thumbnail, colors
                 </div>
             </div>
             <div className="card__image">
-                <img src={thumbnail.path}
+                <img src={`https://api-factory.simbirsoft1.com${thumbnail.path}`}
                      onError={(e) =>
                          {
                             e.target.onerror = null;

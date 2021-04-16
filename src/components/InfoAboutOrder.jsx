@@ -65,6 +65,7 @@ export default function InfoAboutOrder({orderId, city, point, modelCar, color, r
                 <div className="body__text">
                     <span>{bodyText}</span>
                 </div>
+                <div className="line"></div>
                 <div className="body__point">
                     {bodyCity && <div className="city">
                         <span>{bodyCity},</span>

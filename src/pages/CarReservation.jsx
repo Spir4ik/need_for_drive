@@ -2,7 +2,8 @@ import React from 'react'
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
 import Navigation from "../components/Navigation.jsx";
 import InfoAboutOrder from "../components/InfoAboutOrder.jsx";
-import Forms from "../components/Forms.jsx";
+// import Forms from "../components/Forms.jsx";
+import Forms from "../components/Forms/Forms.jsx";
 import Map from "../components/Map.jsx";
 import ContentHeader from "../components/ContentHeader.jsx";
 import Adaptet from "../components/Adapted/Adaptet.jsx";

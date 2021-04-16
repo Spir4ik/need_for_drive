@@ -7,7 +7,7 @@ const initialStateOrder = {
     carId: {},
     color: '',
     price: 0,
-    dateFrom: Date.parse(new Date()),
+    dateFrom: 0,
     dateTo: null,
     rateId: {},
     isFullTank: false,
