@@ -18,18 +18,20 @@
   }
   ul {
     position: absolute;
-    margin: 20px 0 0 105px;
+    margin: 20px 0 0 110px;
     padding: 0 0 0 8px;
-    width: 193px;
-    height: 160px;
+    width: 205px;
+    max-height: 106px;
     overflow-y: auto;
     list-style: none;
     color: #999999;
     border: 1px solid #EEEEEE;
     border-top: none;
     background-color: white;
+    z-index: 1;
     li {
       color: #999999;
+      padding: 1px 0 1px 0;
       &:hover {
         cursor: pointer;
         color: #0EC261;

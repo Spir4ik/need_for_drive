@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Autocomplete from './Autocomplete.jsx';
 import "../styles/styleForms.scss";
@@ -11,6 +11,8 @@ export default function Forms() {
   const [textCity, _] = useState(store.cityId.hasOwnProperty('name') ? store.cityId.name : '');
   const [textPoint, setTextPoint] = useState(store.pointId.hasOwnProperty('address') ? store.pointId.address : '');
   const dispatch = useDispatch();
+  const refCity = useRef(null);
+  const refPoint = useRef(null);
 
   useEffect(() => dispatch(addCity()), []);
   useEffect(() => {
@@ -27,6 +29,8 @@ export default function Forms() {
                   textLabel="Город:"
                   arrayUl={cities.city}
                   id="city"
+                  currentRef={refCity}
+                  isDisabled={false}
               />
             </div>
             <div className="forms__point">
@@ -35,6 +39,8 @@ export default function Forms() {
                   textLabel="Пункт выдачи:"
                   arrayUl={points.point}
                   id="point"
+                  currentRef={refPoint}
+                  isDisabled={(store.cityId.hasOwnProperty('name'))}
               />
             </div>
           </form>
