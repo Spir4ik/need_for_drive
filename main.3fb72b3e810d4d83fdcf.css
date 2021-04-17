@@ -448,62 +448,85 @@
         .content__info-about-order .containers .info-about-order__header__footer button.btn__success-page {
           background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%); }
 
-.kUkGqE_bR7FcRdDabg0uB {
-  display: flex;
-  justify-content: flex-end;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 16px; }
-  .kUkGqE_bR7FcRdDabg0uB input {
-    width: 224px;
-    border: none;
-    border-bottom: 1px solid #999999;
-    outline: none;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 16px;
-    margin-left: 10px;
-    text-indent: 8px; }
-  .kUkGqE_bR7FcRdDabg0uB ._2aCBj8o5bcQ_sXDeXPceEt {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    position: relative;
-    width: 100%; }
-    .kUkGqE_bR7FcRdDabg0uB ._2aCBj8o5bcQ_sXDeXPceEt ul {
-      position: absolute;
-      width: 224px;
-      right: 0;
-      top: 0;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      overflow: auto;
-      max-height: 106px;
+.autocomplete {
+  width: 325px;
+  margin-top: 32px; }
+  .autocomplete.main-page {
+    width: 200px;
+    margin-top: 0;
+    margin-right: 55px; }
+    @media (max-width: 767px) {
+      .autocomplete.main-page {
+        margin-right: 16px; } }
+    .autocomplete.main-page ul {
+      margin: 20px 0 0 10px;
+      width: 173px; }
+  @media (max-width: 767px) {
+    .autocomplete {
+      width: 320px; } }
+  .autocomplete ul {
+    position: absolute;
+    margin: 20px 0 0 110px;
+    padding: 0 0 0 8px;
+    width: 205px;
+    max-height: 106px;
+    overflow-y: auto;
+    list-style: none;
+    color: #999999;
+    border: 1px solid #EEEEEE;
+    border-top: none;
+    background-color: white;
+    z-index: 1; }
+    .autocomplete ul li {
       color: #999999;
-      border: 1px solid #EEEEEE;
-      background-color: white; }
-      .kUkGqE_bR7FcRdDabg0uB ._2aCBj8o5bcQ_sXDeXPceEt ul::-webkit-scrollbar {
-        width: 5px;
-        background-color: white; }
-      .kUkGqE_bR7FcRdDabg0uB ._2aCBj8o5bcQ_sXDeXPceEt ul::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background-color: #BFBFBF; }
-      .kUkGqE_bR7FcRdDabg0uB ._2aCBj8o5bcQ_sXDeXPceEt ul::-webkit-scrollbar-track {
-        border-radius: 5px;
-        background-color: #f9f9fd; }
-      .kUkGqE_bR7FcRdDabg0uB ._2aCBj8o5bcQ_sXDeXPceEt ul li:hover {
+      padding: 1px 0 1px 0; }
+      .autocomplete ul li:hover {
         cursor: pointer;
         color: #0EC261; }
-
-.G7Vs6OHPF6DhthOHZjWVG {
-  display: flex;
-  flex-direction: column;
-  width: 335px; }
-  .G7Vs6OHPF6DhthOHZjWVG ._11D6M-nIp__hNYOU9eRpm5 {
-    margin: 32px 0 12px 0; }
+    .autocomplete ul::-webkit-scrollbar {
+      width: 5px;
+      background-color: white; }
+    .autocomplete ul::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #BFBFBF; }
+    .autocomplete ul::-webkit-scrollbar-track {
+      border-radius: 5px;
+      background-color: #f9f9fd; }
+  .autocomplete .forms__city, .autocomplete .forms__point {
+    display: flex;
+    align-content: center;
+    margin-bottom: 15px; }
+    .autocomplete .forms__city.main-page, .autocomplete .forms__point.main-page {
+      margin-bottom: 0; }
+    .autocomplete .forms__city .clear__item, .autocomplete .forms__point .clear__item {
+      position: relative;
+      top: 5px;
+      right: 15px; }
+      .autocomplete .forms__city .clear__item img, .autocomplete .forms__point .clear__item img {
+        position: absolute; }
+        .autocomplete .forms__city .clear__item img:hover, .autocomplete .forms__point .clear__item img:hover {
+          cursor: pointer; }
+    .autocomplete .forms__city input, .autocomplete .forms__point input {
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 16px;
+      margin-left: 10px;
+      width: 100%;
+      border-width: 0;
+      border-bottom: 1px solid black;
+      text-indent: 8px;
+      outline: none; }
+    .autocomplete .forms__city label, .autocomplete .forms__point label {
+      width: 155px;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 16px; }
+      .autocomplete .forms__city label.main-page, .autocomplete .forms__point label.main-page {
+        width: 0; }
+      .autocomplete .forms__city label:first-child, .autocomplete .forms__point label:first-child {
+        text-align: end; }
 
 ._1l_hNffMU0rESrp-mn1FZz {
   display: none;
