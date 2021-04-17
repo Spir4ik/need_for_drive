@@ -8,7 +8,7 @@ import Spinner from "../components/Spinner/Spinner.jsx";
 import UserOrder from "../components/UserOrder/UserOrder.jsx";
 import InfoAboutOrder from "../components/InfoAboutOrder.jsx";
 import Adaptet from "../components/Adapted/Adaptet.jsx";
-import {login, currentOrder} from '../actions/actions'
+import {login, currentOrder} from '../redux/actions/actions'
 
 
 export default function () {

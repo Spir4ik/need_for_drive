@@ -93,7 +93,7 @@ body {
             margin: 0 16px 0 7px;
           }
           &:hover {
-            cursor: pointer;
+            cursor: default;
           }
         }
       }
@@ -179,7 +179,7 @@ body {
         background-color: $bc-header;
         flex-direction: column-reverse;
         margin-top: auto;
-        height: 9%;
+        height: 55px;
         margin-bottom: 0;
         margin-left: -20px;
       }

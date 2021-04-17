@@ -2,19 +2,17 @@ import React, { useEffect } from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {useRouteMatch} from "react-router-dom";
 import '../../styles/styleFormRadio.scss'
-import {addCategory, addCategoryId, addColorInStore} from "../../actions/actions";
+import {addCategory, addCategoryId, addColorInStore} from "../../redux/actions/actions";
+import selector from "../../redux/selectors/selectors";
 
 
 export default function RadioComponent() {
     const {path} = useRouteMatch();
     const dispatch = useDispatch();
-    const category = useSelector(state => state.categoryReducer.category);
-    const currentCategoryId = useSelector(state => state.categoryIdReducer);
-    const colorsCurrentCar = useSelector(state => state.storeReducer.carId.colors);
-    const currentColor = useSelector(state => state.storeReducer.color);
+    const selectors = selector(useSelector);
 
     useEffect(() => dispatch(addCategory()), []);
-    console.log(colorsCurrentCar);
+
     return(
         <>
             {path === '/modelspage' ? <div className="form_radio">
@@ -24,10 +22,10 @@ export default function RadioComponent() {
                     name="radio"
                     value=""
                     onChange={(e) => dispatch(addCategoryId(e.target.value))}
-                    checked={ currentCategoryId === "" }
+                    checked={ selectors.categoryId === "" }
                 />
                 <label htmlFor="radio-1">Все модели</label>
-                {category.map(({name, id}) => {
+                {selectors.category.map(({name, id}) => {
                     return(
                         <React.Fragment key={id}>
                             <input
@@ -36,7 +34,7 @@ export default function RadioComponent() {
                                 name="radio"
                                 value={id}
                                 onChange={(e) => dispatch(addCategoryId(e.target.value))}
-                                checked={ currentCategoryId === id}
+                                checked={ selectors.categoryId === id}
                             />
                             <label htmlFor={name}>{name}</label>
                         </React.Fragment>
@@ -51,10 +49,10 @@ export default function RadioComponent() {
                     name="radio"
                     value="any"
                     onChange={(e) => dispatch(addColorInStore(e.target.value))}
-                    checked={ currentColor === "any" }
+                    checked={ selectors.store.color === "any" }
                 />
                 <label htmlFor="any">Любой</label>
-                {colorsCurrentCar.map((item, index) => {
+                {selectors.store.carId.colors.map((item, index) => {
                     return(
                         <React.Fragment key={index}>
                             <input
@@ -63,7 +61,7 @@ export default function RadioComponent() {
                                 name="radio"
                                 value={item}
                                 onChange={(e) => dispatch(addColorInStore(e.target.value))}
-                                checked={ currentColor === item}
+                                checked={ selectors.store.color === item}
                             />
                             <label htmlFor={index}>{item}</label>
                         </React.Fragment>

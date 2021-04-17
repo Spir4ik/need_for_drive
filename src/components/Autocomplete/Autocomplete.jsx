@@ -3,7 +3,7 @@ import classes from './Autocomplete.module.scss'
 import PropTypes from 'prop-types'
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 import {useDispatch} from "react-redux";
-import {addCityInStore, addPointInStore} from "../../actions/actions";
+import {addCityInStore, addPointInStore} from "../../redux/actions/actions";
 import iconClear from "../../assets/icon-clear.svg";
 
 export default function Autocomplete({currentArray, id, currrentlabel, currentText}) {

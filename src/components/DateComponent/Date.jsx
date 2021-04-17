@@ -4,7 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import moment from "moment";
 import ru from 'date-fns/locale/ru'
 import styleDate from './Date.module.scss'
-import {addDaysAndHours, addPriceInStore, addDateFromInStore, addDateToInStore} from '../../actions/actions';
+import selector from '../../redux/selectors/selectors'
+import {addDaysAndHours, addPriceInStore, addDateFromInStore, addDateToInStore} from '../../redux/actions/actions';
 
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 
@@ -13,28 +14,25 @@ moment.locale('ru');
 export default function () {
     registerLocale('ru', ru);
     const dispatch = useDispatch();
-    const currentDate = useSelector(state => state.storeReducer.dateFrom);
-    const startDate = new Date();
-    const endDate = useSelector(state => state.storeReducer.dateTo);
-    const orderRate = useSelector(state => state.storeReducer.rateId);
-    const currentDaysAndHours = useSelector(state => state.daysAndHoursReducer);
+    const selectors = selector(useSelector).store;
+    const currentDaysAndHours = selector(useSelector).daysAndHours;
 
     useEffect(() => {
-        if (endDate) {
-            const now = moment(currentDate);
-            const end = moment(endDate);
+        if (selectors.dateTo) {
+            const now = moment(selectors.dateFrom);
+            const end = moment(selectors.dateTo);
             const duration = moment.duration(end.diff(now));
             const hours = duration.asHours();
             dispatch(addDaysAndHours(0, Math.ceil(duration.asHours())));
             if (Math.round(hours) >= 24) {
-                dispatch(addDaysAndHours(Math.trunc(duration.asDays() + 0.01), (Math.ceil(duration.asHours()) % 24)))
+                dispatch(addDaysAndHours(Math.trunc(duration.asDays() + 0.01), (Math.ceil(duration.asHours()) % 24)));
             }
         }
-    }, [endDate]);
+    }, [selectors.dateTo]);
 
     useEffect(() => {
-        if (orderRate.hasOwnProperty('price')) {
-            switch (orderRate.price) {
+        if (selectors.rateId.hasOwnProperty('price')) {
+            switch (selectors.rateId.price) {
                 case 1999:
                     dispatch(addPriceInStore(currentDaysAndHours.days * 1999));
                     break;
@@ -42,13 +40,13 @@ export default function () {
                     dispatch(addPriceInStore((currentDaysAndHours.days * 1440 * 7) + (currentDaysAndHours.hours * 60 * 7)));
                     break;
                 case 7500:
-                    currentDaysAndHours.days === 7 ? dispatch(addPriceInStore(7500)) : dispatch(addPriceInStore(0));
+                    (currentDaysAndHours.days === 7) ? dispatch(addPriceInStore(7500)) : dispatch(addPriceInStore(0));
                     break;
                 default:
-                    dispatch(addPriceInStore(0))
+                    dispatch(addPriceInStore(0));
             }
         }
-    }, [currentDaysAndHours, orderRate]);
+    }, [currentDaysAndHours, selectors.rateId]);
 
     const filterPassedTime = time => {
         const currentDate = new Date();
@@ -60,7 +58,7 @@ export default function () {
     const filterDateToTime = time => {
         const selectedDate = new Date(time);
 
-        return startDate.getTime() < selectedDate.getTime();
+        return new Date().getTime() < selectedDate.getTime();
     };
 
     const handleChangeDateFrom = (date) => {
@@ -69,8 +67,8 @@ export default function () {
     };
 
     const handleChangeDateTo = (date) => {
-        const hours = new Date(currentDate).getHours();
-        const min = new Date(currentDate).getMinutes();
+        const hours = new Date(selectors.dateFrom).getHours();
+        const min = new Date(selectors.dateFrom).getMinutes();
         const year = new Date(date).getFullYear();
         const month = new Date(date).getMonth();
         const day = new Date(date).getDate();
@@ -85,11 +83,11 @@ export default function () {
             <div className={styleDate.date__from}>
                 <label>С</label>
                 <DatePicker
-                    selected={new Date(currentDate)}
+                    selected={new Date(selectors.dateFrom)}
                     onChange={date => handleChangeDateFrom(date)}
                     selectsStart
-                    startDate={startDate}
-                    endDate={endDate}
+                    startDate={new Date()}
+                    endDate={selectors.dateTo}
                     minDate={new Date()}
                     showTimeSelect
                     filterTime={filterPassedTime}
@@ -104,12 +102,12 @@ export default function () {
             <div className={styleDate.date__to}>
                 <label>По</label>
                 <DatePicker
-                    selected={endDate ? new Date(endDate) : 0}
+                    selected={selectors.dateTo ? new Date(selectors.dateTo) : 0}
                     onChange={date => handleChangeDateTo(date)}
                     selectsEnd
-                    startDate={new Date(currentDate)}
-                    endDate={endDate}
-                    minDate={new Date(currentDate)}
+                    startDate={new Date(selectors.dateFrom)}
+                    endDate={selectors.dateTo}
+                    minDate={new Date(selectors.dateFrom)}
                     showTimeSelect
                     filterTime={filterDateToTime}
                     disabledKeyboardNavigation

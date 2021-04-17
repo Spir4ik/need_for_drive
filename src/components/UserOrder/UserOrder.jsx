@@ -3,10 +3,11 @@ import {useSelector} from "react-redux";
 import moment from "moment";
 import styleUserOrder from './UserOrder.module.scss';
 import PropTypes from 'prop-types';
+import selector from "../../redux/selectors/selectors";
 import noImage from "../../assets/no-image.png";
 
 export default function UserOrder({nameCar, numberCar, tankCar, fullTank, dateFrom, imageCar}) {
-    const store = useSelector(state => state.storeReducer);
+    const store = selector(useSelector).store;
     return(
         <div className={styleUserOrder.userOrder__main}>
             <div className={styleUserOrder.userOrder__info}>

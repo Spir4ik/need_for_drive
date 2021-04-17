@@ -1,6 +1,6 @@
 import React from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import {addTankInStore, addCharInStore, addRightHandDrive} from '../../actions/actions'
+import {addTankInStore, addCharInStore, addRightHandDrive} from '../../redux/actions/actions'
 import styleCheckbox from './Checkbox.module.scss'
 
 export default function () {

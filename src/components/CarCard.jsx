@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {useDispatch} from "react-redux";
-import {addCarInStore} from "../actions/actions";
+import {addCarInStore} from "../redux/actions/actions";
 import noImage from '../assets/no-image.png'
 
 export default function CarCard({ itemCar }) {

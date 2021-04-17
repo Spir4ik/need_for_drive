@@ -4,7 +4,7 @@ import App from './App.jsx'
 import {HashRouter} from "react-router-dom";
 import {createStore, applyMiddleware} from "redux";
 import {Provider} from 'react-redux'
-import reducer from "./reducer/reducer"
+import reducer from "./redux/reducer/reducer"
 import thunk from 'redux-thunk';
 
 const store = createStore(reducer, applyMiddleware(thunk));

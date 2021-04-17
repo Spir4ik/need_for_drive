@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Autocomplete from './Autocomplete.jsx';
 import "../styles/styleForms.scss";
-import {addCity, addPoint} from "../actions/actions";
+import {addCity, addPoint} from "../redux/actions/actions";
 
 export default function Forms() {
   const cities = useSelector(state => state.cityReducer);

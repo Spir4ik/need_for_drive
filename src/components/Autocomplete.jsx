@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from "react-redux";
 import iconClear from '../assets/icon-clear.svg'
-import {addCityInStore, addPointInStore} from "../actions/actions";
+import {addCityInStore, addPointInStore} from "../redux/actions/actions";
 
 export default function Autocomplete({textLabel, arrayUl, id, currentText}) {
     const [text, setText] = useState(currentText ? currentText : '');
