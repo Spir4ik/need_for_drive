@@ -15,10 +15,10 @@ export default function UserOrder({nameCar, numberCar, tankCar, fullTank, dateFr
                     {nameCar ? nameCar : store.carId.name}
                 </div>
                 <div className={styleUserOrder.info__numberCar}>
-                    <span>{numberCar ? numberCar : store.carId.number}</span>
+                    {numberCar ? <span>{numberCar}</span> : store.carId.number ? <span>{store.carId.number}</span> : null}
                 </div>
                 <div className={styleUserOrder.info__tankCar}>
-                    <span><strong>Топливо</strong> {fullTank || store.isFullTank ? '100%' : tankCar ? tankCar : store.carId.tank}</span>
+                    <span><strong>Топливо</strong> {fullTank || store.isFullTank ? '100%' : tankCar ? tankCar : `${store.carId.tank ? store.carId.tank : 20}%`}</span>
                 </div>
                 <div className="info__dateCar">
                     <span><strong>Доступно с</strong> {dateFrom ? dateFrom : moment(new Date(store.dateFrom).toISOString()).format('DD.MM.YYYY HH:mm ')}</span>
@@ -26,7 +26,7 @@ export default function UserOrder({nameCar, numberCar, tankCar, fullTank, dateFr
             </div>
             <div className={styleUserOrder.userOrder__imageCar}>
                 <img
-                    src={imageCar ? imageCar.path : store.carId.thumbnail.path}
+                    src={imageCar ? `https://api-factory.simbirsoft1.com${imageCar.path}` : `https://api-factory.simbirsoft1.com${store.carId.thumbnail.path}`}
                     onError={(e) =>
                         {
                         e.target.onerror = null;

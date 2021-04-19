@@ -63,7 +63,7 @@ export default function RadioComponent() {
                                 onChange={(e) => dispatch(addColorInStore(e.target.value))}
                                 checked={ selectors.store.color === item}
                             />
-                            <label htmlFor={index}>{item}</label>
+                            <label htmlFor={index}>{item.charAt(0).toUpperCase() + item.slice(1)}</label>
                         </React.Fragment>
                     )
                 })}

@@ -27,7 +27,7 @@ export default function () {
                     <Link to={pathName}>
                         {textLi}
                     </Link> : textLi }
-                <img src={iconVector} alt="" />
+                {textLi !== 'Итого' ? <img src={iconVector} alt="" /> : null}
             </li>
         )
     }

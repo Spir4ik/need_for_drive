@@ -85,7 +85,7 @@ export default function InfoAboutOrder({ orderId, city, point, modelCar, color, 
                     renderInfoBody('Пункт выдачи', 'Выберите го.', 'Выберите п-т')
                 }
                 {selectors.store.carId.hasOwnProperty('id') ? renderInfoBody('Модель', false, selectors.store.carId.name) : null}
-                {selectors.store.color !== '' ? renderInfoBody('Цвет', false, selectors.store.color === 'any' ? 'Любой' : selectors.store.color) : null}
+                {selectors.store.color !== '' ? renderInfoBody('Цвет', false, selectors.store.color === 'any' ? 'Любой' : selectors.store.color.charAt(0).toUpperCase() + selectors.store.color.slice(1)) : null}
                 {selectors.currentDays || selectors.currentHours ? renderInfoBody('Длительность аренды', false, `${selectors.currentDays}д ${selectors.currentHours}ч`) : null}
                 {selectors.store.rateId.hasOwnProperty('rateTypeId') ? renderInfoBody('Тариф', false, selectors.store.rateId.rateTypeId.name) : null}
                 {selectors.store.isFullTank ? renderInfoBody('Полный бак', false, 'Да') : null}

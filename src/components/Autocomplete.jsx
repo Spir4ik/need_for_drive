@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import iconClear from '../assets/icon-clear.svg'
+import selector from "../redux/selectors/selectors";
 import {addCityInStore, addPointInStore} from "../redux/actions/actions";
 
 export default function Autocomplete({textLabel, arrayUl, id, currentText, currentRef}) {
-    const [text, setText] = useState(currentText ? currentText : '');
+    const [text, setText] = useState('');
+    const selectors = selector(useSelector).store;
     const [showUl, setShowUl] = useState(false);
-    const store = useSelector(state => state.storeReducer);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,13 +24,16 @@ export default function Autocomplete({textLabel, arrayUl, id, currentText, curre
         }
     }, [currentRef]);
 
+    useEffect(() => {
+        setText(currentText);
+    }, [currentText]);
+
     const renderElemUl = () => {
         return(
             <ul>
                 {arrayUl.map(({name, id, address}) => {
                     return address ? (address.includes(text) ?
                         <li key={id} onClick={() => {
-                            setText(address);
                             setShowUl(false);
                             dispatch(addPointInStore({address, id, name}))
                         }}>{address}</li>
@@ -38,7 +42,6 @@ export default function Autocomplete({textLabel, arrayUl, id, currentText, curre
                         :
                         (name.includes(text) ?
                         <li key={id} onClick={() => {
-                            setText(name);
                             setShowUl(false);
                             dispatch(addPointInStore({}));
                             dispatch(addCityInStore({name, id}));
@@ -61,7 +64,7 @@ export default function Autocomplete({textLabel, arrayUl, id, currentText, curre
                    onClick={() => setShowUl(true)}
                    value={text}
                    ref={currentRef}
-                   disabled={id === "point" && !store.cityId.hasOwnProperty('name')}
+                   disabled={id === "point" && !selectors.cityId.hasOwnProperty('name')}
                    placeholder={`Начните вводить ${textLabel.charAt(0).toLowerCase() + textLabel.slice(1, 5)}...`}
             />
             <div className="clear__item" onClick={() => setText('')}>
