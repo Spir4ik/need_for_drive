@@ -21,7 +21,6 @@ export default function Forms() {
     setTextCity(selectors.store.cityId.hasOwnProperty('name') ? selectors.store.cityId.name : '');
     setTextPoint(selectors.store.pointId.hasOwnProperty('address') ? selectors.store.pointId.address : '');
   }, [selectors.store.cityId, selectors.store.pointId]);
-
   return (
       <>
         <div className="autocomplete">
@@ -43,7 +42,7 @@ export default function Forms() {
                   arrayUl={selectors.points.point}
                   id="point"
                   currentRef={refPoint}
-                  isDisabled={(selectors.store.cityId.hasOwnProperty('name'))}
+                  isDisabled={(selectors.store.cityId.hasOwnProperty('address'))}
               />
             </div>
           </form>

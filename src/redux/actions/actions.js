@@ -72,6 +72,18 @@ export const addRightHandDrive = () => ({
     type: 'ADD_RIGHT_HAND_DRIVE'
 })
 
+export const clearTankInStore = () => ({
+    type: 'CLEAR_TANK_IN_STORE'
+});
+
+export const clearCharInStore = () => ({
+    type: 'CLEAR_CHAR_IN_STORE'
+});
+
+export const clearRightHandDrive = () => ({
+    type: 'CLEAR_RIGHT_HAND_DRIVE'
+})
+
 export const addCategoryId = categoryId => ({
     type: 'ADD_CATEGORY_ID',
     payload: {

@@ -137,7 +137,23 @@ function storeReducer(state = initialStateOrder, action) {
                 ...state,
                 isRightWheel: !state.isRightWheel,
                 price: !state.isRightWheel ? state.price + 1600 : state.price - 1600
-            }
+            };
+        case 'CLEAR_TANK_IN_STORE':
+            return {
+                ...state,
+                isFullTank: false,
+                price: 0,
+            };
+        case 'CLEAR_CHAR_IN_STORE':
+            return {
+                ...state,
+                isNeedChildChair: false,
+            };
+        case 'CLEAR_RIGHT_HAND_DRIVE':
+            return {
+                ...state,
+                isRightWheel: false,
+            };
         default:
             return state;
     }

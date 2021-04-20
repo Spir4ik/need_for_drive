@@ -3,7 +3,20 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from "react-redux";
 import iconClear from '../assets/icon-clear.svg'
 import selector from "../redux/selectors/selectors";
-import {addCityInStore, addPointInStore} from "../redux/actions/actions";
+import {
+    addCityInStore,
+    addPointInStore,
+    addCarInStore,
+    addRateInStore,
+    addColorInStore,
+    addPriceInStore,
+    addDateFromInStore,
+    addDateToInStore,
+    clearTankInStore,
+    clearCharInStore,
+    clearRightHandDrive,
+    addDaysAndHours
+} from "../redux/actions/actions";
 
 export default function Autocomplete({textLabel, arrayUl, id, currentText, currentRef}) {
     const [text, setText] = useState('');
@@ -44,6 +57,16 @@ export default function Autocomplete({textLabel, arrayUl, id, currentText, curre
                         <li key={id} onClick={() => {
                             setShowUl(false);
                             dispatch(addPointInStore({}));
+                            dispatch(addCarInStore({}));
+                            dispatch(addRateInStore({}));
+                            dispatch(addColorInStore(''));
+                            dispatch(addPriceInStore(0));
+                            dispatch(addDateFromInStore(Date.parse(new Date())));
+                            dispatch(addDateToInStore(0));
+                            dispatch(clearTankInStore());
+                            dispatch(clearCharInStore());
+                            dispatch(clearRightHandDrive());
+                            dispatch(addDaysAndHours(0, 0));
                             dispatch(addCityInStore({name, id}));
                         }}>{name}</li>
                         :

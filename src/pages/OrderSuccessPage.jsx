@@ -43,10 +43,10 @@ export default function () {
                 <div className="content other-page">
                     {!order ? <Spinner /> : <>
                         <ContentHeader successCity={order.cityId.name}/>
-                        <Adaptet />
                         <Navigation />
                         <div className="content__main">
                             <div className="main__params">
+                                <p className="order-confirmed__text">Ваш заказ подтверждён</p>
                                 <UserOrder
                                     nameCar={order.carId.name}
                                     numberCar={order.carId.number}
@@ -73,6 +73,7 @@ export default function () {
                             </div>
                         </div>
                     </>}
+                    <Adaptet />
                 </div>
             </div>
         </div>

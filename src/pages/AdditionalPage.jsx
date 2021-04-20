@@ -13,7 +13,6 @@ export default function () {
             <div className="container other-page">
                 <div className="content other-page">
                     <ContentHeader />
-                    <Adaptet />
                     <Navigation />
                     <div className="content__main">
                         <div className="main__params">
@@ -23,6 +22,7 @@ export default function () {
                             <InfoAboutOrder />
                         </div>
                     </div>
+                    <Adaptet />
                 </div>
             </div>
         </div>
