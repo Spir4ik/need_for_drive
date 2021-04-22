@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {useSelector} from "react-redux";
 import iconAdaptet from '../../assets/icon-adaptet.svg'
 import iconAdaptetClose from '../../assets/icon-adaptet_close.svg'
@@ -41,7 +41,7 @@ export default function () {
                         <img src={iconAdaptetClose} onClick={() => setShowWindow(!showWindow)} alt=""/>
                     </div>
                     <div className={styleAdaptet.test_window}>
-                        <InfoAboutOrder
+                        {order ? <InfoAboutOrder
                             city={order.cityId.name}
                             point={order.pointId.address}
                             modelCar={order.carId.name}
@@ -53,7 +53,7 @@ export default function () {
                             rightWheel={order.isRightWheel}
                             price={order.price}
                             orderId={order.id}
-                        />
+                        /> : <InfoAboutOrder />}
                     </div>
                 </div>
             </>
