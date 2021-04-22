@@ -372,6 +372,7 @@
       position: absolute;
       left: 0;
       width: 100%;
+      margin-top: 0;
       display: block;
       z-index: 1; }
     .breadcrumb .mytest ul li {
@@ -499,6 +500,10 @@
     border-top: none;
     background-color: white;
     z-index: 1; }
+    @media (max-width: 767px) {
+      .autocomplete ul {
+        margin: 20px 0 0 107px;
+        width: 174px; } }
     .autocomplete ul li {
       color: #999999;
       padding: 1px 0 1px 0; }
@@ -578,6 +583,9 @@
     ._3O3zLaR-w_0M_gAp6gga1c ._1l_hNffMU0rESrp-mn1FZz {
       display: flex; } }
   @media (max-width: 767px) {
+    ._3O3zLaR-w_0M_gAp6gga1c ._1l_hNffMU0rESrp-mn1FZz img {
+      margin: 0 15px 0 0; } }
+  @media (max-width: 1200px) {
     ._3O3zLaR-w_0M_gAp6gga1c ._1l_hNffMU0rESrp-mn1FZz img {
       margin: 0 15px 0 0; } }
 
