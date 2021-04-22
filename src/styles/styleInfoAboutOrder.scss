@@ -5,6 +5,9 @@
   @media (max-width: 1200px) {
     padding: 0 4px 0 30px;
   }
+  @media (max-width: 767px) {
+    height: 0;
+  }
   .containers {
     display: flex;
     flex-direction: column;
@@ -64,8 +67,14 @@
       font-weight: 500;
       font-size: 16px;
       line-height: 16px;
+      p {
+        margin-bottom: 32px;
+      }
+      @media (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+      }
       button {
-        margin-top: 32px;
         width: 287px;
         height: 48px;
         border-radius: 8px;
@@ -78,14 +87,22 @@
         text-align: center;
         color: white;
         border: none;
+        transition: all 0.3s ease-out;
         &:disabled {
           background: #EEEEEE;
         }
         &:hover {
           cursor: pointer;
+          filter: brightness(80%);
+        }
+        &:active {
+          filter: brightness(60%);
         }
         &.btn__success-page {
           background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
+        }
+        @media (max-width: 767px) {
+          width: 100%;
         }
       }
     }

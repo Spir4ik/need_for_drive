@@ -6,11 +6,11 @@ import Navigation from "../components/Navigation.jsx";
 import InfoAboutOrder from "../components/InfoAboutOrder.jsx";
 import Window from "../components/ConfirmationWindow/Window.jsx";
 import UserOrder from "../components/UserOrder/UserOrder.jsx";
-import selector from "../redux/selectors/selectors";
+import modalWindowStatusSelector from "../redux/selectors/modalWindowStatusSelector";
 import Adaptet from "../components/Adapted/Adaptet.jsx";
 
 export default function () {
-    const selectors = selector(useSelector);
+    const modalWindow = useSelector(modalWindowStatusSelector());
 
     return(
         <>
@@ -32,7 +32,7 @@ export default function () {
                     </div>
                 </div>
             </div>
-        {selectors.modalWindowStatus && <Window />}
+        {modalWindow && <Window />}
         </>
     )
 }

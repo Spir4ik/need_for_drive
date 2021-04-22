@@ -1,20 +1,8 @@
 .autocomplete {
   width: 325px;
   margin-top: 32px;
-  &.main-page {
-    width: 200px;
-    margin-top: 0;
-    margin-right: 55px;
-    @media (max-width: 767px) {
-      margin-right: 16px;
-    }
-    ul {
-      margin: 20px 0 0 10px;
-      width: 173px;
-    }
-  }
   @media (max-width: 767px) {
-    width: 320px;
+    width: 290px;
   }
   ul {
     position: absolute;
@@ -29,6 +17,10 @@
     border-top: none;
     background-color: white;
     z-index: 1;
+    @media (max-width: 767px) {
+      margin: 20px 0 0 107px;
+      width: 174px;
+    }
     li {
       color: #999999;
       padding: 1px 0 1px 0;
@@ -54,9 +46,6 @@
     display: flex;
     align-content: center;
     margin-bottom: 15px;
-    &.main-page {
-      margin-bottom: 0;
-    }
     .clear__item {
       position: relative;
       top: 5px;
@@ -79,6 +68,9 @@
         border-bottom: 1px solid black;
         text-indent: 8px;
         outline: none;
+      @media (max-width: 767px) {
+          width: 300px;
+        }
       }
     label {
       width: 155px;
@@ -86,8 +78,8 @@
       font-weight: 300;
       font-size: 14px;
       line-height: 16px;
-      &.main-page {
-        width: 0;
+      @media (max-width: 767px) {
+        width: 166px;
       }
       &:first-child {
         text-align: end;

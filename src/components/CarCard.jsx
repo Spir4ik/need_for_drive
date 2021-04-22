@@ -1,37 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import storeSelector from "../redux/selectors/storeSelector"
 import noImage from '../assets/no-image.png'
-import {
-    addCarInStore,
-    addRateInStore,
-    addColorInStore,
-    addPriceInStore,
-    addDateFromInStore,
-    addDateToInStore,
-    clearTankInStore,
-    clearCharInStore,
-    clearRightHandDrive,
-    addDaysAndHours
-} from "../redux/actions/actions";
+import { addCarInStore, addDaysAndHours } from "../redux/actions/actions";
 
 export default function CarCard({ itemCar }) {
     const dispatch = useDispatch();
+    const store = useSelector(storeSelector());
 
     return(
-        <div className="cars__card" onClick={() => {
-                dispatch(addCarInStore(itemCar));
-                dispatch(addRateInStore({}));
-                dispatch(addColorInStore(''));
-                dispatch(addPriceInStore(0));
-                dispatch(addDateFromInStore(Date.parse(new Date())));
-                dispatch(addDateToInStore(0));
-                dispatch(clearTankInStore());
-                dispatch(clearCharInStore());
-                dispatch(clearRightHandDrive());
-                dispatch(addDaysAndHours(0, 0));
-            }
-        }>
+        <div className={store.carId.id === itemCar.id ? "cars__card selected" : "cars__card"} onClick={() => {
+            dispatch(addDaysAndHours(0, 0));
+            dispatch(addCarInStore(itemCar));
+        }}>
             <div className="card__header">
                 <div className="header__name">
                     <span>{itemCar.name}</span>

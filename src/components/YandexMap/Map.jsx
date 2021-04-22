@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import {useSelector, useDispatch} from "react-redux";
-import selector from "../../redux/selectors/selectors";
+import storeSelector from "../../redux/selectors/storeSelector";
+import pointSelector from '../../redux/selectors/pointSelector'
 import {addPointInStore} from "../../redux/actions/actions";
 
 
 export default function Map() {
-    const selectors = selector(useSelector);
+    const store = useSelector(storeSelector());
+    const points = useSelector(pointSelector());
     const dispatch = useDispatch();
     const [objectCity, setObjectCity] = useState(null);
-    useEffect(() => getCurrentCoordinates(), [selectors.store.cityId]);
+    useEffect(() => getCurrentCoordinates(), [store.cityId]);
     useEffect(() => handleLoad(), []);
-    useEffect(() => { objectCity ? renderPlacemark() : null }, [selectors.points.point]);
+    useEffect(() => { objectCity ? renderPlacemark() : null }, [points.point]);
 
     const handleLoad = () => {
         window.ymaps.ready(() => {
@@ -28,7 +30,7 @@ export default function Map() {
     }
 
     const getCurrentCoordinates = (myMap) => {
-        let myGeocoder = window.ymaps.geocode(selectors.store.cityId.name);
+        let myGeocoder = window.ymaps.geocode(store.cityId.name);
         myGeocoder.then(
             function (res) {
                 myMap ? myMap.setCenter(
@@ -46,8 +48,8 @@ export default function Map() {
         );
     }
     const renderPlacemark = () => {
-        selectors.points.point.forEach(item => {
-            window.ymaps.geocode(`${selectors.store.cityId.name}, ${item.address}`)
+        points.point.forEach(item => {
+            window.ymaps.geocode(`${store.cityId.name}, ${item.address}`)
                 .then(res => {
                     const coordinats = res.geoObjects.get(0).geometry.getCoordinates()
                     const mark = new window.ymaps.Placemark((coordinats), {
@@ -74,7 +76,7 @@ export default function Map() {
             <div id="map" style={{
                 marginTop: '32px',
                 width: '100%',
-                height: '400px'
+                height: '300px'
             }}> </div>
         </div>
     )

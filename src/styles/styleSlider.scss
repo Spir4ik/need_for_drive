@@ -97,8 +97,13 @@
   border: none;
   color: #EEEEEE;
   outline: none;
+  transition: all 0.3s ease-out;
   &:hover {
     cursor: pointer;
+    filter: brightness(80%);
+  }
+  &:active {
+    filter: brightness(60%);
   }
 }
 

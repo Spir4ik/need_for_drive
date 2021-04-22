@@ -2,11 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Autocomplete from './Autocomplete.jsx';
 import "../styles/styleForms.scss";
-import selector from "../redux/selectors/selectors";
-import {addCity, addPoint} from "../redux/actions/actions";
+import storeSelector from "../redux/selectors/storeSelector";
+import citySelector from '../redux/selectors/citySelector'
+import pointSelector from '../redux/selectors/pointSelector'
+import addCity from "../redux/thunk/addCity";
+import addPoint from "../redux/thunk/addPoint";
 
 export default function Forms() {
-  const selectors = selector(useSelector);
+  const store = useSelector(storeSelector());
+  const cities = useSelector(citySelector());
+  const points = useSelector(pointSelector());
   const [textCity, setTextCity] = useState('');
   const [textPoint, setTextPoint] = useState('');
   const dispatch = useDispatch();
@@ -15,12 +20,12 @@ export default function Forms() {
 
   useEffect(() => dispatch(addCity()), []);
   useEffect(() => {
-    selectors.store.cityId.hasOwnProperty('name') ? dispatch(addPoint(selectors.store.cityId.id)) : null;
-  }, [selectors.store]);
+    store.cityId.hasOwnProperty('name') ? dispatch(addPoint(store.cityId.id)) : null;
+  }, [store]);
   useEffect(() => {
-    setTextCity(selectors.store.cityId.hasOwnProperty('name') ? selectors.store.cityId.name : '');
-    setTextPoint(selectors.store.pointId.hasOwnProperty('address') ? selectors.store.pointId.address : '');
-  }, [selectors.store.cityId, selectors.store.pointId]);
+    setTextCity(store.cityId.hasOwnProperty('name') ? store.cityId.name : '');
+    setTextPoint(store.pointId.hasOwnProperty('address') ? store.pointId.address : '');
+  }, [store.cityId, store.pointId]);
   return (
       <>
         <div className="autocomplete">
@@ -29,7 +34,7 @@ export default function Forms() {
               <Autocomplete
                   currentText={textCity}
                   textLabel="Город:"
-                  arrayUl={selectors.cities.city}
+                  arrayUl={cities.city}
                   id="city"
                   currentRef={refCity}
                   isDisabled={false}
@@ -39,10 +44,10 @@ export default function Forms() {
               <Autocomplete
                   currentText={textPoint}
                   textLabel="Пункт выдачи:"
-                  arrayUl={selectors.points.point}
+                  arrayUl={points.point}
                   id="point"
                   currentRef={refPoint}
-                  isDisabled={(selectors.store.cityId.hasOwnProperty('address'))}
+                  isDisabled={(store.cityId.hasOwnProperty('address'))}
               />
             </div>
           </form>

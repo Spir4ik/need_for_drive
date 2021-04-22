@@ -1,0 +1,1 @@
+export default () => state => state.currentOrderReducer.currentOrder[0]

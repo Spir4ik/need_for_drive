@@ -6,53 +6,68 @@
   line-height: 16px;
   color: #999999;
   @media (max-width: 767px) {
-    font-size: 8px;
+    font-size: 13px;
+    width: 100%;
   }
   @media (max-width: 1200px) {
-    margin-top: 0px;
+    margin-top: 0;
   }
- ul {
-   padding: 0;
-   margin-block-end: 0;
-     &:before {
-     content: '';
-     height: 0;
-     display: block;
-     left: 0;
-     width: 100%;
-     position: absolute;
-     border-top: 1px solid #EEEEEE;
-     z-index: 1;
-   }
-   &:after {
-     content: '';
-     height: 0;
-     border-bottom: 1px solid #EEEEEE;
-     position: absolute;
-     left: 0;
-     width: 100%;
-     display: block;
-     z-index: 1;
-   }
-   li {
-     display: inline-block;
-     padding: 8px 0 8px 0;
-     &.active {
-       color: #0EC261;
-     }
-     &.nonactive {
-       color: black;
-     }
-     img {
-       padding: 0 16px 0 16px;
-       @media (max-width: 767px) {
-         padding: 0 22px 0 21px;
-       }
-     }
-     a {
-       text-decoration: none;
-       color: black;
-     }
-   }
- }
+  .mytest {
+    @media (max-width: 767px) {
+      width: 100%;
+      height: 35px;
+      overflow-x: scroll;
+    }
+    ul {
+      padding: 0;
+      margin-block-end: 0;
+      @media (max-width: 767px) {
+        padding: 8px 0 0 0;
+        margin: 0;
+        width: 134%;
+        display: flex;
+        justify-content: center;
+        text-align: left;
+        overflow: visible;
+      }
+      &:before {
+        content: '';
+        height: 0;
+        display: block;
+        left: 0;
+        width: 100%;
+        position: absolute;
+        border-top: 1px solid #EEEEEE;
+        z-index: 1;
+      }
+      &:after {
+        content: '';
+        height: 0;
+        border-bottom: 1px solid #EEEEEE;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        margin-top: 0;
+        display: block;
+        z-index: 1;
+      }
+      li {
+        display: inline-block;
+        padding: 8px 0 8px 0;
+        &.active {
+          color: #0EC261;
+        }
+        &.nonactive {
+          color: black;
+        }
+        img {
+          padding: 0 16px 0 16px;
+        }
+        a {
+          text-decoration: none;
+          color: black;
+        }
+      }
+    }
+  }
 }

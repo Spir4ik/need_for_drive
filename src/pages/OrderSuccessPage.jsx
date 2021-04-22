@@ -8,20 +8,24 @@ import Spinner from "../components/Spinner/Spinner.jsx";
 import UserOrder from "../components/UserOrder/UserOrder.jsx";
 import InfoAboutOrder from "../components/InfoAboutOrder.jsx";
 import Adaptet from "../components/Adapted/Adaptet.jsx";
-import {login, currentOrder} from '../redux/actions/actions'
+import fetchLogin from "../redux/thunk/login";
+import currentOrder from "../redux/thunk/currentOrder"
+import tokenSelector from "../redux/selectors/tokenSelector"
+import currentOrderSelector from "../redux/selectors/currentOrderSelector"
 
 
 export default function () {
     const dispatch = useDispatch();
-    const token = useSelector(state => state.loginReducer.accessToken);
+    const token = useSelector(tokenSelector());
     useEffect(() =>
-        token === '' ? dispatch(login()) : dispatch(currentOrder(token, localStorage.getItem('id')))
+        token === '' ? dispatch(fetchLogin()) : dispatch(currentOrder(token, localStorage.getItem('id')))
         , [token]);
-    const order = useSelector(state => state.currentOrderReducer.currentOrder[0]);
+    const order = useSelector(currentOrderSelector());
 
     const convertingDate = (date) => {
-        return moment(new Date(date).toISOString()).format('DD.MM.YYYY HH:mm ')
+        return moment(new Date(date).toISOString()).format('DD.MM.YYYY HH:mm ');
     };
+
     const dateDifference = () => {
         if (order) {
             const now = moment(new Date(order.dateFrom).toISOString());
@@ -34,6 +38,7 @@ export default function () {
                 hours
             };
         }
+        return null;
     };
 
     return(

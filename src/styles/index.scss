@@ -39,15 +39,10 @@ body {
           max-width: 736px;
           margin-top: 45px;
           @media (max-width: 767px) {
-            margin: 0 16px 0 16px;
+            margin: 0 16px 0 0;
           }
-          img {
-            margin-top: 16px;
-            width: 100%;
-            font-style: normal;
-            font-weight: 300;
-            font-size: 14px;
-            line-height: 16px;
+          @media (max-width: 1200px) {
+            max-width: 95%;
           }
         }
         .order-confirmed__text {
@@ -85,7 +80,7 @@ body {
         line-height: 35px;
         color: $main-color;
         @media (max-width: 767px) {
-          margin: 0 16px 0 0;
+          margin: 0 25px 0 0;
         }
       }
       .header__city {
@@ -99,7 +94,7 @@ body {
           line-height: 16px;
           color: $gray;
           @media (max-width: 767px) {
-            margin: 0 16px 0 7px;
+            margin: 0 25px 0 7px;
           }
           &:hover {
             cursor: default;
@@ -167,9 +162,13 @@ body {
           text-align: center;
           border: none;
           outline: none;
+          transition: all 0.3s ease-out;
           &:hover {
             cursor: pointer;
-            background: linear-gradient(90deg, #0B934A 2.61%, #026E47 112.6%);
+            filter: brightness(80%);
+          }
+          &:active {
+            filter: brightness(60%);
           }
           @media (max-width: 767px) {
             margin: 40px 0 0 0;

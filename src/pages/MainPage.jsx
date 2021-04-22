@@ -3,7 +3,8 @@ import Slider from "../components/Slider.jsx";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {addCity} from "../redux/actions/actions";
+// import {addCity} from "../redux/actions/actions";
+import addCity from "../redux/thunk/addCity";
 
 export default function () {
     const dispatch = useDispatch();

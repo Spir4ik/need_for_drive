@@ -1,11 +1,17 @@
 import React from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import {addTankInStore, addCharInStore, addRightHandDrive} from '../../redux/actions/actions'
+import storeSelector from "../../redux/selectors/storeSelector"
+import { addTankInStore, addCharInStore, addRightHandDrive } from '../../redux/actions/actions'
 import styleCheckbox from './Checkbox.module.scss'
 
 export default function () {
     const dispatch = useDispatch();
-    const orderChecked = useSelector(state => state.storeReducer);
+    const orderChecked = useSelector(storeSelector());
+
+    const checkingForZero = (actionFunc) => {
+        if (orderChecked.price === 0) return alert("Выберите тариф и дату!");
+        return dispatch(actionFunc);
+    }
 
     return(
         <div className={styleCheckbox.checkbox__items}>
@@ -14,7 +20,7 @@ export default function () {
                 id="fullTank"
                 name="fullTank"
                 value=""
-                onChange={() => dispatch(addTankInStore())}
+                onChange={() => checkingForZero(addTankInStore())}
                 checked={(orderChecked.isFullTank)}
             />
             <label htmlFor="fullTank">Полный бак, 500р</label>
@@ -24,7 +30,7 @@ export default function () {
                 id="babyArmchar"
                 name="babyArmchar"
                 value=""
-                onChange={() => dispatch(addCharInStore())}
+                onChange={() => checkingForZero(addCharInStore())}
                 checked={(orderChecked.isNeedChildChair)}
             />
             <label htmlFor="babyArmchar">Детское кресло, 200р</label>
@@ -34,7 +40,7 @@ export default function () {
                 id="rightHandDrive"
                 name="rightHandDrive"
                 value=""
-                onChange={() => dispatch(addRightHandDrive())}
+                onChange={() => checkingForZero(addRightHandDrive())}
                 checked={(orderChecked.isRightWheel)}
             />
             <label htmlFor="rightHandDrive">Правый руль, 1600р</label>

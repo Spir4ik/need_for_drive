@@ -7,10 +7,10 @@ import Forms from "../components/Forms.jsx";
 import Map from "../components/YandexMap/Map.jsx";
 import ContentHeader from "../components/ContentHeader.jsx";
 import Adaptet from "../components/Adapted/Adaptet.jsx";
-import selector from "../redux/selectors/selectors";
+import storeSelector from "../redux/selectors/storeSelector";
 
 export default function () {
-    const selectors = selector(useSelector).store;
+    const store = useSelector(storeSelector())
     return(
         <div className="wrapper other-page">
             <HamburgerMenu />
@@ -21,7 +21,7 @@ export default function () {
                     <div className="content__main">
                         <div className="main__params">
                             <Forms />
-                            {selectors.cityId.hasOwnProperty('name') ? <Map/> : null}
+                            {store.cityId.hasOwnProperty('name') ? <Map/> : null}
                         </div>
                         <div className="content__info">
                             <InfoAboutOrder />

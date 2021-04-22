@@ -2,25 +2,15 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from "react-redux";
 import iconClear from '../assets/icon-clear.svg'
-import selector from "../redux/selectors/selectors";
+import storeSelector from "../redux/selectors/storeSelector";
 import {
     addCityInStore,
     addPointInStore,
-    addCarInStore,
-    addRateInStore,
-    addColorInStore,
-    addPriceInStore,
-    addDateFromInStore,
-    addDateToInStore,
-    clearTankInStore,
-    clearCharInStore,
-    clearRightHandDrive,
-    addDaysAndHours
 } from "../redux/actions/actions";
 
 export default function Autocomplete({textLabel, arrayUl, id, currentText, currentRef}) {
     const [text, setText] = useState('');
-    const selectors = selector(useSelector).store;
+    const store = useSelector(storeSelector());
     const [showUl, setShowUl] = useState(false);
     const dispatch = useDispatch();
 
@@ -56,17 +46,6 @@ export default function Autocomplete({textLabel, arrayUl, id, currentText, curre
                         (name.includes(text) ?
                         <li key={id} onClick={() => {
                             setShowUl(false);
-                            dispatch(addPointInStore({}));
-                            dispatch(addCarInStore({}));
-                            dispatch(addRateInStore({}));
-                            dispatch(addColorInStore(''));
-                            dispatch(addPriceInStore(0));
-                            dispatch(addDateFromInStore(Date.parse(new Date())));
-                            dispatch(addDateToInStore(0));
-                            dispatch(clearTankInStore());
-                            dispatch(clearCharInStore());
-                            dispatch(clearRightHandDrive());
-                            dispatch(addDaysAndHours(0, 0));
                             dispatch(addCityInStore({name, id}));
                         }}>{name}</li>
                         :
@@ -87,10 +66,12 @@ export default function Autocomplete({textLabel, arrayUl, id, currentText, curre
                    onClick={() => setShowUl(true)}
                    value={text}
                    ref={currentRef}
-                   disabled={id === "point" && !selectors.cityId.hasOwnProperty('name')}
+                   disabled={id === "point" && !store.cityId.hasOwnProperty('name')}
                    placeholder={`Начните вводить ${textLabel.charAt(0).toLowerCase() + textLabel.slice(1, 5)}...`}
             />
-            <div className="clear__item" onClick={() => setText('')}>
+            <div className="clear__item" onClick={() => {
+                id === "city" ? dispatch(addCityInStore({})) : dispatch(addPointInStore({}))
+            }}>
                 <img src={iconClear}
                      alt=""
                 />
