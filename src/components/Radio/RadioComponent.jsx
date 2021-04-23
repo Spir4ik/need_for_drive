@@ -16,7 +16,7 @@ export default function RadioComponent() {
     const currentCategory = useSelector(categoryIdSelector());
     const store = useSelector(storeSelector())
     useEffect(() => dispatch(addCategory()), []);
-
+   
     return(
         <>
             {path === '/modelspage' ? <div className="form_radio">

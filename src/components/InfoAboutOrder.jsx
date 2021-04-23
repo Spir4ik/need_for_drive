@@ -7,7 +7,7 @@ import { useRouteMatch } from "react-router-dom";
 import storeSelector from "../redux/selectors/storeSelector";
 import daysAndHoursSelector from "../redux/selectors/daysAndHours";
 import tokenSelector from "../redux/selectors/tokenSelector";
-import { showModalWindow } from '../redux/actions/actions';
+import { showModalWindow, addColorInStore } from '../redux/actions/actions';
 import deleteCurrentOrder from "../redux/thunk/deleteCurrentOrder";
 
 export default function InfoAboutOrder({ orderId, city, point, modelCar, color, rate, fullTank, babyArmchir, rightWheel, price, leaseDuration}) {
@@ -38,7 +38,10 @@ export default function InfoAboutOrder({ orderId, city, point, modelCar, color, 
             case "/modelspage":
                 return(
                     <Link to="/additional">
-                        <button disabled={!(store.carId.hasOwnProperty('id'))}>
+                        <button 
+                            disabled={!(store.carId.hasOwnProperty('id'))}
+                            onClick={() => dispatch(addColorInStore('any'))}
+                        >
                             Дополнительно
                         </button>
                     </Link>
