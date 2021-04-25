@@ -378,12 +378,9 @@
       position: absolute;
       left: 0;
       width: 100%;
-      margin-top: 0;
+      margin-top: 30px;
       display: block;
       z-index: 1; }
-      @media (max-width: 767px) {
-        .breadcrumb .mytest ul:after {
-          height: 32px; } }
     .breadcrumb .mytest ul li {
       display: inline-block;
       padding: 8px 0 8px 0; }
