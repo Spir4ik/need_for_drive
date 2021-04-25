@@ -35,7 +35,7 @@ export default function () {
         if (store.rateId.hasOwnProperty('price')) {
             switch (store.rateId.price) {
                 case 1999:
-                    currentDaysAndHours.hours &&  currentDaysAndHours.days  ?
+                    currentDaysAndHours.hours ?
                         dispatch(addPriceInStore((currentDaysAndHours.days + 1) * 1999))
                         : dispatch(addPriceInStore(currentDaysAndHours.days * 1999))
                     break;

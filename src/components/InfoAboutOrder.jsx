@@ -18,9 +18,10 @@ export default function InfoAboutOrder({ orderId, city, point, modelCar, color, 
     const dispatch = useDispatch();
 
     const deleteOrderFunc = () => {
+        const winLocation = window.location;
         localStorage.removeItem('id');
         dispatch(deleteCurrentOrder(token, `${localStorage.getItem('id')}`));
-        return window.location.reload();
+        return winLocation.replace(winLocation.pathname);
     };
 
     const renderBtn = () => {
@@ -108,7 +109,7 @@ export default function InfoAboutOrder({ orderId, city, point, modelCar, color, 
             <>
                 {renderInfoBody('Пункт выдачи', city, point)}
                 {renderInfoBody('Модель', false, modelCar)}
-                {renderInfoBody('Цвет', false, color)}
+                {renderInfoBody('Цвет', false, color === 'any' ? 'Любой' : color)}
                 {renderInfoBody('Длительность аренды', false, `${leaseDuration.days}д ${leaseDuration.hours}ч`)}
                 {renderInfoBody('Тариф', false, rate)}
                 {fullTank ? renderInfoBody('Полный бак', false, 'Да') : null}

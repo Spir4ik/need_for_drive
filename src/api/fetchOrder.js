@@ -1,7 +1,7 @@
 import {api} from './api';
 
-export default async function fetchOrder(cb, errorCb = null, accessToken, url) {
-    await api.get(
+export default async function fetchOrder(accessToken, url) {
+    const response = await api.get(
         `db/order?id=${url}`,
         {
             headers: {
@@ -10,10 +10,6 @@ export default async function fetchOrder(cb, errorCb = null, accessToken, url) {
                 'Content-type': 'application/json',
             }
         }
-    ).then(response => {
-        cb(response.data);
-    })
-        .catch(error => {
-            errorCb ? errorCb(error) : null;
-        });
+    )
+    return response.data.data
 }

@@ -1,7 +1,7 @@
 import {api} from './api';
 
-export default async function deleteOrder(cb, errorCb = null, accessToken, currentId) {
-    await api.delete(
+export default async function deleteOrder(accessToken, currentId) {
+    const response = await api.delete(
         `db/order/${currentId}`,
         {
             headers: {
@@ -9,10 +9,6 @@ export default async function deleteOrder(cb, errorCb = null, accessToken, curre
                 'Authorization': `Bearer ${accessToken}`,
             }
         }
-    ).then((response) => {
-            cb(response.data);
-    })
-    .catch((error) => {
-        errorCb ? errorCb(error) : null
-    });
+    )
+    return response.data.data
 }

@@ -1,13 +1,9 @@
 import {api} from './api';
 
-export default async function login(cb, errorCb = null) {
-    await api.post(
+export default async function login() {
+    const response = await api.post(
         "auth/login",
-        {username: 'intern', password: 'intern-S!'},
-    ).then(response => {
-        cb(response.data);
-    })
-        .catch(error => {
-            errorCb ? errorCb(error) : null;
-        });
+        {username: 'intern', password: 'intern-S!'}
+    )
+    return response.data.access_token
 }

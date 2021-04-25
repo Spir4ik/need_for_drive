@@ -1,13 +1,6 @@
 import {api} from './api';
 
-export default async function fetchData(cb, errorCb = null, store) {
-    await api.post(
-        "db/order",
-        store,
-    ).then(response => {
-        cb(response.data);
-    })
-        .catch(error => {
-            errorCb ? errorCb(error) : null;
-        });
+export default async function fetchData(store) {
+    const response = await api.post("db/order", store)
+    return response.data.data.id
 }

@@ -15,20 +15,26 @@
   .mytest {
     @media (max-width: 767px) {
       width: 100%;
-      height: 35px;
+      height: 40px;
       overflow-x: scroll;
     }
     ul {
       padding: 0;
       margin-block-end: 0;
       @media (max-width: 767px) {
-        padding: 8px 0 0 0;
+        padding: 12px 0 0 0;
         margin: 0;
-        width: 134%;
+        width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         text-align: left;
         overflow: visible;
+      }
+      @media (max-width: 376px) {
+        width: 113%;
+      }
+      @media (max-width: 321px) {
+        width: 134%;
       }
       &:before {
         content: '';
@@ -50,6 +56,9 @@
         margin-top: 0;
         display: block;
         z-index: 1;
+        @media (max-width: 767px) {
+          margin-top: 32px;
+        }
       }
       li {
         display: inline-block;

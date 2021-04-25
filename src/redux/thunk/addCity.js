@@ -3,14 +3,14 @@ import fetchData from "../../api/fetchData";
 export default function addCity() {
     return dispatch => {
         dispatch(getCityStarted());
-
-        fetchData(
-            cities => {
-                dispatch(getCitySuccess(cities.data))
-            },
-            error => dispatch(getCityFailed(error.message)),
-            'db/city'
-        )
+        try {
+            (async () => {
+                const result = await fetchData('db/city');
+                dispatch(getCitySuccess(result))
+            })()
+        } catch(e) {
+            dispatch(getCityFailed(e.message))
+        }
     }
 };
 

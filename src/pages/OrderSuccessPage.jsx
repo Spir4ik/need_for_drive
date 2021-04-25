@@ -32,7 +32,7 @@ export default function () {
             const end = moment(new Date(order.dateTo).toISOString());
             const duration = moment.duration(end.diff(now));
             const days = Math.trunc(duration.asDays() + 0.01);
-            const hours = Math.ceil(duration.asHours() % 24);
+            const hours = Math.ceil(duration.asHours() !== 0 ? duration.asHours() % 24 : duration.asHours());
             return {
                 days,
                 hours

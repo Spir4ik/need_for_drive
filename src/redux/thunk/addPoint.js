@@ -3,14 +3,14 @@ import fetchData from "../../api/fetchData";
 export default function addPoint(paramUrl) {
     return dispatch => {
         dispatch(getPointStarted());
-
-        fetchData(
-            points => {
-                dispatch(getPointSuccess(points.data))
-            },
-            error => dispatch(getPointFailed(error.message)),
-            `db/point?cityId=${paramUrl}`
-        )
+        try {
+            (async () => {
+                const result = await fetchData(`db/point?cityId=${paramUrl}`);
+                dispatch(getPointSuccess(result))
+            })()
+        } catch(e) {
+            dispatch(getPointFailed(e.message))
+        }
     }
 }
 

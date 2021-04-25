@@ -3,15 +3,15 @@ import fetchPost from "../../api/fetchPost"
 export default function postData(store) {
     return dispatch => {
         dispatch(postStarted());
-
-        fetchPost(
-            response => {
-                localStorage.setItem('id', response.data.id);
-                dispatch(postSuccess(response.data.id));
-            },
-            error => dispatch(postFailed(error.message)),
-            store
-        )
+        try {
+            (async () => {
+                const result = await fetchPost(store);
+                localStorage.setItem('id', result);
+                dispatch(postSuccess(result))
+            })()
+        } catch(e) {
+            dispatch(postFailed(e.message))
+        }
     }
 };
 

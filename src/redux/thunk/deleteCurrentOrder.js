@@ -3,15 +3,14 @@ import deleteOrder from "../../api/deleteOrder"
 export default function deleteCurrentOrder(access_token, orderId) {
     return dispatch => {
         dispatch(deleteCurrentOrderStarted());
-
-        deleteOrder(
-            response => {
-                dispatch(deleteCurrentOrderSuccess(response.data));
-            },
-            error => dispatch(deleteCurrentOrderFailed(error.message)),
-            access_token,
-            orderId
-        )
+        try {
+            (async () => {
+                const result = await deleteOrder(access_token, orderId);
+                dispatch(deleteCurrentOrderSuccess(result))
+            })()
+        } catch(e) {
+            dispatch(deleteCurrentOrderFailed(e.message))
+        }
     }
 };
 

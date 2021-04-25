@@ -19,20 +19,20 @@
     justify-content: flex-end;
     align-items: center;
     .show_window {
-      height: 25px;
-      width: 25px;
+      height: 35px;
+      width: 35px;
     }
     @media (max-width: 1200px) {
       display: flex;
     }
     @media (max-width: 767px) {
       img {
-        margin: 0 15px 0 0;
+        margin: 0 20px 20px 0;
       }
     }
     @media (max-width: 1200px) {
       img {
-        margin: 0 15px 0 0;
+        margin: 0 20px 20px 0;
       }
     }
   }
@@ -57,11 +57,10 @@
         width: 50px;
         height: 35px;
         padding: 20px 30px 0 22px;
-        //margin: 0 30px 0 0;
       }
     }
     .test_window {
-      width: 90%;
+      width: 92%;
     }
   }
 }

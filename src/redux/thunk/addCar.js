@@ -3,14 +3,14 @@ import fetchData from "../../api/fetchData";
 export default function addCar(categoryId){
     return dispatch => {
         dispatch(getCarsStarted());
-
-        fetchData(
-            category => {
-                dispatch(getCarsSuccess(category.data))
-            },
-            error => dispatch(getCarsFailed(error.message)),
-            categoryId !== '' ? `db/car?categoryId=${categoryId}` : 'db/car'
-        )
+        try {
+            (async () => {
+                const result = categoryId ? await fetchData(`db/car?categoryId=${categoryId}`) : await fetchData('db/car');
+                dispatch(getCarsSuccess(result))
+            })()
+        } catch(e) {
+            dispatch(getCarsFailed(e.message))
+        }
     }
 }
 

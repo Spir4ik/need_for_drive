@@ -3,15 +3,14 @@ import fetchOrder from "../../api/fetchOrder";
 export default function currentOrder(access_token, orderId) {
     return dispatch => {
         dispatch(currentOrderStarted());
-
-        fetchOrder(
-            response => {
-                dispatch(currentOrderSuccess(response.data));
-            },
-            error => dispatch(currentOrderFailed(error.message)),
-            access_token,
-            orderId
-        )
+        try {
+            (async () => {
+                const result = await fetchOrder(access_token, orderId);
+                dispatch(currentOrderSuccess(result))
+            })()
+        } catch(e) {
+            dispatch(currentOrderFailed(e.message))
+        }
     }
 };
 

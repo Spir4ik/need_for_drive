@@ -12,9 +12,7 @@ export default function () {
     const dispatch = useDispatch();
     const cars = useSelector(carsSelector());
     const currentCategory = useSelector(categoryId());
-    useEffect(() => {
-        dispatch(addCar(currentCategory));
-    }, [currentCategory]);
+    useEffect(() => dispatch(addCar(currentCategory)), [currentCategory]);
 
     return(
         <>

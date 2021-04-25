@@ -3,14 +3,14 @@ import fetchData from "../../api/fetchData";
 export default function addCategory(){
     return dispatch => {
         dispatch(getCategoryStarted());
-
-        fetchData(
-            category => {
-                dispatch(getCategorySuccess(category.data))
-            },
-            error => dispatch(getCategoryFailed(error.message)),
-            'db/category'
-        )
+        try {
+            (async () => {
+                const result = await fetchData('db/category');
+                dispatch(getCategorySuccess(result))
+            })()
+        } catch(e) {
+            dispatch(getCategoryFailed(e.message))
+        }
     }
 }
 

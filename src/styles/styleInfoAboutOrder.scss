@@ -3,10 +3,11 @@
   height: 100vh;
   padding: 0 63px 0 32px;
   @media (max-width: 1200px) {
-    padding: 0 4px 0 30px;
+    padding: 0 10px 0 30px;
   }
   @media (max-width: 767px) {
     height: 0;
+    padding: 0 0 0 30px;
   }
   .containers {
     display: flex;

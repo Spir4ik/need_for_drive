@@ -48,10 +48,12 @@
     margin-bottom: 15px;
     .clear__item {
       position: relative;
-      top: 5px;
+      top: 0;
       right: 15px;
       img {
         position: absolute;
+        background-color: white;
+        padding: 5px 5px 4px 5px;
         &:hover {
           cursor: pointer;
         }

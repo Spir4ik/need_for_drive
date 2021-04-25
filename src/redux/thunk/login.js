@@ -3,13 +3,14 @@ import login from "../../api/login";
 export default function fetchLogin() {
     return dispatch => {
         dispatch(loginStarted());
-
-        login(
-            response => {
-                dispatch(loginSuccess(response.access_token));
-            },
-            error => dispatch(loginFailed(error.message))
-        )
+        try {
+            (async () => {
+                const result = await login();
+                dispatch(loginSuccess(result))
+            })()
+        } catch(e) {
+            dispatch(loginFailed(e.message))
+        }
     }
 };
 

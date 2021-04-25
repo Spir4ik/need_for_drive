@@ -6,9 +6,6 @@
     display: flex;
     flex-wrap: wrap;
     padding-right: 16px;
-    @media (max-width: 767px) {
-      max-width: 322px;
-    }
     .cars__card {
       display:flex;
       flex-direction:column;
