@@ -50,7 +50,7 @@ export default function InfoAboutOrder({ orderId, city, point, modelCar, color, 
             case "/additional":
                 return(
                     <Link to="/resultstage">
-                        <button disabled={!(store.color !== '' && (daysAndHours.days || daysAndHours.hours) && store.price !== 0)}>
+                        <button disabled={!(store.color !== '' && (daysAndHours.days || daysAndHours.hours) && store.price !== 0 && store.rateId.hasOwnProperty('price'))}>
                             Итого
                         </button>
                     </Link>

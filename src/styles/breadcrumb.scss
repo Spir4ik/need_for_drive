@@ -30,8 +30,11 @@
         text-align: left;
         overflow: visible;
       }
+      @media (max-width: 421px) {
+        width: 109%;
+      }
       @media (max-width: 376px) {
-        width: 113%;
+        width: 118%;
       }
       @media (max-width: 321px) {
         width: 134%;

@@ -61,17 +61,26 @@ export default function storeReducer(state = initialStateOrder, action) {
         case 'ADD_DATE_FROM_IN_STORE':
             return {
                 ...state,
-                dateFrom: action.payload.dateFrom
+                dateFrom: action.payload.dateFrom,
+                isFullTank: false,
+                isNeedChildChair: false,
+                isRightWheel: false,
             };
         case 'ADD_DATE_TO_IN_STORE':
             return {
                 ...state,
-                dateTo: action.payload.dateTo
+                dateTo: action.payload.dateTo,
+                isFullTank: false,
+                isNeedChildChair: false,
+                isRightWheel: false,
             };
         case 'ADD_RATE_IN_STORE':
             return {
                 ...state,
-                rateId: action.payload.rateId
+                rateId: action.payload.rateId,
+                isFullTank: false,
+                isNeedChildChair: false,
+                isRightWheel: false,
             };
         case 'ADD_TANK_IN_STORE':
             return {

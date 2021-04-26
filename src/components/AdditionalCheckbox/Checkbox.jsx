@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import storeSelector from "../../redux/selectors/storeSelector"
 import { addTankInStore, addCharInStore, addRightHandDrive } from '../../redux/actions/actions'
@@ -8,11 +8,6 @@ export default function () {
     const dispatch = useDispatch();
     const orderChecked = useSelector(storeSelector());
 
-    const checkingForZero = (actionFunc) => {
-        if (orderChecked.price === 0) return alert("Выберите тариф и дату!");
-        return dispatch(actionFunc);
-    }
-
     return(
         <div className={styleCheckbox.checkbox__items}>
             <input
@@ -20,7 +15,7 @@ export default function () {
                 id="fullTank"
                 name="fullTank"
                 value=""
-                onChange={() => checkingForZero(addTankInStore())}
+                onChange={() => dispatch(addTankInStore())}
                 checked={(orderChecked.isFullTank)}
             />
             <label htmlFor="fullTank">Полный бак, 500р</label>
@@ -30,7 +25,7 @@ export default function () {
                 id="babyArmchar"
                 name="babyArmchar"
                 value=""
-                onChange={() => checkingForZero(addCharInStore())}
+                onChange={() => dispatch(addCharInStore())}
                 checked={(orderChecked.isNeedChildChair)}
             />
             <label htmlFor="babyArmchar">Детское кресло, 200р</label>
@@ -40,7 +35,7 @@ export default function () {
                 id="rightHandDrive"
                 name="rightHandDrive"
                 value=""
-                onChange={() => checkingForZero(addRightHandDrive())}
+                onChange={() => dispatch(addRightHandDrive())}
                 checked={(orderChecked.isRightWheel)}
             />
             <label htmlFor="rightHandDrive">Правый руль, 1600р</label>
