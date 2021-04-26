@@ -356,9 +356,12 @@
         justify-content: flex-start;
         text-align: left;
         overflow: visible; } }
+    @media (max-width: 421px) {
+      .breadcrumb .mytest ul {
+        width: 109%; } }
     @media (max-width: 376px) {
       .breadcrumb .mytest ul {
-        width: 113%; } }
+        width: 118%; } }
     @media (max-width: 321px) {
       .breadcrumb .mytest ul {
         width: 134%; } }
@@ -407,7 +410,8 @@
   @media (max-width: 767px) {
     .content__info-about-order {
       height: 0;
-      padding: 0 0 0 30px; } }
+      width: 100%;
+      padding: 0 0 0 4%; } }
   .content__info-about-order .containers {
     display: flex;
     flex-direction: column;
