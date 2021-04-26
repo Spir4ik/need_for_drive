@@ -1,17 +1,7 @@
 import fetchData from "../../api/fetchData";
+import {getRateSuccess, getRateStarted, getRateFailed} from "../actions/thunkActions/thunkAddRate"
 
 export default function addRate(){
-    // return dispatch => {
-    //     dispatch(getRateStarted());
-
-    //     fetchData(
-    //         category => {
-    //             dispatch(getRateSuccess(category.data))
-    //         },
-    //         error => dispatch(getRateFailed(error.message)),
-    //         'db/rate'
-    //     )
-    // }
     return dispatch => {
         dispatch(getRateStarted());
         try {
@@ -24,21 +14,3 @@ export default function addRate(){
         }
     }
 }
-
-const getRateSuccess = rate => ({
-    type: 'ADD_RATE_SUCCESS',
-    payload: {
-        rate
-    }
-});
-
-const getRateStarted = () => ({
-    type: 'ADD_RATE_STARTED',
-});
-
-const getRateFailed = error => ({
-    type: 'ADD_RATE_FAILURE',
-    payload: {
-        error
-    }
-});

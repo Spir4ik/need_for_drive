@@ -1,4 +1,5 @@
 import fetchData from "../../api/fetchData";
+import {getCarsSuccess, getCarsStarted, getCarsFailed} from '../actions/thunkActions/thunkAddCar'
 
 export default function addCar(categoryId){
     return dispatch => {
@@ -13,21 +14,3 @@ export default function addCar(categoryId){
         }
     }
 }
-
-const getCarsSuccess = car => ({
-    type: 'ADD_CAR_SUCCESS',
-    payload: {
-        car
-    }
-});
-
-const getCarsStarted = () => ({
-    type: 'ADD_CAR_STARTED',
-});
-
-const getCarsFailed = error => ({
-    type: 'ADD_CAR_FAILURE',
-    payload: {
-        error
-    }
-});

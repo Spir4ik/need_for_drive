@@ -1,4 +1,5 @@
 import login from "../../api/login";
+import {loginSuccess, loginStarted, loginFailed} from "../actions/thunkActions/thunkLogin"
 
 export default function fetchLogin() {
     return dispatch => {
@@ -13,21 +14,3 @@ export default function fetchLogin() {
         }
     }
 };
-
-const loginSuccess = loginData => ({
-    type: 'LOGIN_SUCCESS',
-    payload: {
-        loginData
-    }
-});
-
-const loginStarted = () => ({
-    type: 'LOGIN_STARTED',
-});
-
-const loginFailed = error => ({
-    type: 'LOGIN_FAILURE',
-    payload: {
-        error
-    }
-});

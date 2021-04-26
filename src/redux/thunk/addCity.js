@@ -1,4 +1,5 @@
 import fetchData from "../../api/fetchData";
+import {getCitySuccess, getCityStarted, getCityFailed} from '../actions/thunkActions/thunkAddCity'
 
 export default function addCity() {
     return dispatch => {
@@ -13,21 +14,3 @@ export default function addCity() {
         }
     }
 };
-
-const getCitySuccess = city => ({
-    type: 'ADD_CITY_SUCCESS',
-    payload: {
-        city
-    }
-});
-
-const getCityStarted = () => ({
-    type: 'ADD_CITY_STARTED'
-});
-
-const getCityFailed = error => ({
-    type: 'ADD_CITY_FAILURE',
-    payload: {
-        error
-    }
-});

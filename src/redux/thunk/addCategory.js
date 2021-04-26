@@ -1,4 +1,5 @@
 import fetchData from "../../api/fetchData";
+import {getCategorySuccess, getCategoryStarted, getCategoryFailed} from "../actions/thunkActions/thunkAddCategory"
 
 export default function addCategory(){
     return dispatch => {
@@ -13,21 +14,3 @@ export default function addCategory(){
         }
     }
 }
-
-const getCategorySuccess = category => ({
-    type: 'ADD_CATEGORY_SUCCESS',
-    payload: {
-        category
-    }
-});
-
-const getCategoryStarted = () => ({
-    type: 'ADD_CATEGORY_STARTED'
-});
-
-const getCategoryFailed = error => ({
-    type: 'ADD_CATEGORY_FAILURE',
-    payload: {
-        error
-    }
-});

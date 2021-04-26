@@ -1,4 +1,5 @@
 import deleteOrder from "../../api/deleteOrder"
+import {deleteCurrentOrderSuccess, deleteCurrentOrderStarted, deleteCurrentOrderFailed} from "../actions/thunkActions/thunkDeleteOrder"
 
 export default function deleteCurrentOrder(access_token, orderId) {
     return dispatch => {
@@ -13,21 +14,3 @@ export default function deleteCurrentOrder(access_token, orderId) {
         }
     }
 };
-
-const deleteCurrentOrderSuccess = successData => ({
-    type: 'DELETE_CURRENT_ORDER_SUCCESS',
-    payload: {
-        successData
-    }
-});
-
-const deleteCurrentOrderStarted = () => ({
-    type: 'DELETE_CURRENT_ORDER_STARTED',
-});
-
-const deleteCurrentOrderFailed = error => ({
-    type: 'DELETE_CURRENT_ORDER_FAILURE',
-    payload: {
-        error
-    }
-});

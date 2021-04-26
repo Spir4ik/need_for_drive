@@ -1,4 +1,5 @@
 import fetchOrder from "../../api/fetchOrder";
+import {currentOrderSuccess, currentOrderStarted, currentOrderFailed} from "../actions/thunkActions/thunkCurrentOrder"
 
 export default function currentOrder(access_token, orderId) {
     return dispatch => {
@@ -13,21 +14,3 @@ export default function currentOrder(access_token, orderId) {
         }
     }
 };
-
-const currentOrderSuccess = currentOrder => ({
-    type: 'CURRENT_ORDER_SUCCESS',
-    payload: {
-        currentOrder
-    }
-});
-
-const currentOrderStarted = () => ({
-    type: 'CURRENT_ORDER_STARTED',
-});
-
-const currentOrderFailed = error => ({
-    type: 'CURRENT_ORDER_FAILURE',
-    payload: {
-        error
-    }
-});

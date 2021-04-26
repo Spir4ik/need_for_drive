@@ -1,4 +1,5 @@
 import fetchPost from "../../api/fetchPost"
+import {postSuccess, postStarted, postFailed} from "../actions/thunkActions/thunkPostData"
 
 export default function postData(store) {
     return dispatch => {
@@ -14,21 +15,3 @@ export default function postData(store) {
         }
     }
 };
-
-const postSuccess = currentOrderId => ({
-    type: 'POST_SUCCESS',
-    payload: {
-        currentOrderId
-    }
-});
-
-const postStarted = () => ({
-    type: 'POST_STARTED',
-});
-
-const postFailed = error => ({
-    type: 'POST_FAILURE',
-    payload: {
-        error
-    }
-});
